@@ -1,0 +1,1060 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+     <!-- Holidays Category -->
+       <!--  <record model="hr.holidays.status" id="holiday_status_heures_sup">
+            <field name="name">Heures Supplementaires</field>
+            <field name="limit">True</field>
+            <field name="color_name">lightblue</field>
+        </record> -->
+
+        <!-- HR SALARY RULE CATEGORIES-->
+        <record id="TOTAL" model="hr.salary.rule.category">
+            <field name="name">Cout total pour l'entreprise</field>
+            <field name="code">TOTAL</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="hr_payroll.NET" model="hr.salary.rule.category">
+            <field name="name">Salaire Net</field>
+            <field name="code">NET</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="hr_payroll.GROSS" model="hr.salary.rule.category">
+            <field name="name">Salaire Brut</field>
+            <field name="code">BRUT</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="hr_payroll.BASIC" model="hr.salary.rule.category">
+            <field name="name">Salaire de base</field>
+            <field name="code">BASE</field>
+            <field name="parent_id" eval="False"/>
+
+        </record>
+
+        <record id="hr_payroll.ALW" model="hr.salary.rule.category">
+            <field name="name">Indemnite</field>
+            <field name="code">INDM</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <record id="C_IMP" model="hr.salary.rule.category">
+            <field name="name">Cumul Imposable</field>
+            <field name="code">C_IMP</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="AV" model="hr.salary.rule.category">
+            <field name="name">Avance</field>
+            <field name="code">AV</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <record id="PR" model="hr.salary.rule.category">
+            <field name="name">Pret</field>
+            <field name="code">PR</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <record id="AB" model="hr.salary.rule.category">
+            <field name="name">Absence</field>
+            <field name="code">AB</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="PRIME" model="hr.salary.rule.category">
+            <field name="name">Prime</field>
+            <field name="code">PRIME</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <record id="C_IMPAN" model="hr.salary.rule.category">
+            <field name="name">Cumul Imposable Annuel</field>
+            <field name="code">C_IMPAN</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="REINV" model="hr.salary.rule.category">
+            <field name="name">Reinvestissement</field>
+            <field name="code">REINV</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="C_IMPDED" model="hr.salary.rule.category">
+            <field name="name">Cumul Imposable Aprés Déduction</field>
+            <field name="code">C_IMPDED</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="RETENUES" model="hr.salary.rule.category">
+            <field name="name">Total Retenues</field>
+            <field name="code">RETENUES</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="SALC" model="hr.salary.rule.category">
+            <field name="name">Total Charges Salariales</field>
+            <field name="code">SALC</field>
+            <field name="parent_id" ref="RETENUES"/>
+        </record>
+
+        <record id="hr_payroll.DED" model="hr.salary.rule.category">
+            <field name="name">Deduction</field>
+            <field name="code">DED</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="DEDIRPP" model="hr.salary.rule.category">
+            <field name="name">Déduction d'impôt</field>
+            <field name="code">DEDIRPP</field>
+            <field name="parent_id" eval="False"/>
+            <!--<field name="parent_id" ref="hr_payroll.DED"/>-->
+            <!--<field name="category_id" ref="hr_payroll.DED"/>-->
+        </record>
+
+        <record id="TRANCHEIMPO" model="hr.salary.rule.category">
+            <field name="name">Tranche d'impôt</field>
+            <field name="code">TRANCHEIMPO</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="IRPP" model="hr.salary.rule.category">
+            <field name="name">IRPP</field>
+            <field name="code">IRPP</field>
+            <field name="parent_id" ref="RETENUES"/>
+
+        </record>
+         <record id="CSS" model="hr.salary.rule.category">
+            <field name="name">CSS</field>
+            <field name="code">CSS</field>
+            <field name="parent_id" ref="RETENUES"/>
+
+        </record>
+
+        <record id="DEDIRPPS" model="hr.salary.rule.category">
+            <field name="name">Total Déduction d'impôt</field>
+            <field name="code">DEDIRPPS</field>
+            <field name="parent_id" ref="hr_payroll.DED"/>
+            <!--<field name="parent_id" eval="False"/>-->
+        </record>
+
+
+        <record id="hr_payroll.COMP" model="hr.salary.rule.category">
+            <field name="name">Cotisations Patronales</field>
+            <field name="code">COMP</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+        <record id="PREV" model="hr.salary.rule.category">
+            <field name="name">Cotisations Prevoyance Patronales</field>
+            <field name="code">PREV</field>
+            <field name="parent_id" ref="hr_payroll.COMP"/>
+        </record>
+
+        <record id="SECU" model="hr.salary.rule.category">
+            <field name="name">Plafond de Securite Sociale</field>
+            <field name="code">SECU</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <record id="other_totals" model="hr.salary.rule.category">
+            <field name="name">Autres totaux</field>
+            <field name="code">O_TOTALS</field>
+            <field name="parent_id" eval="False"/>
+        </record>
+
+
+        <!-- Contribution Register -->
+
+        <record id="hr_CNSS_register" model="hr.contribution.register">
+            <field name="name">La Caisse Nationale de Sécurité Sociale</field>
+        </record>
+
+        <record id="hr_retraite_register" model="hr.contribution.register">
+            <field name="name">Organisme de retraite complementaire</field>
+        </record>
+
+        <record id="hr_cci_register" model="hr.contribution.register">
+            <field name="name">Chambre du commerce et de l'industrie</field>
+        </record>
+
+        <record id="hr_prevoyance_register" model="hr.contribution.register">
+            <field name="name">Organisme de prevoyance</field>
+        </record>
+
+
+        <!-- HR SALARY RULES-->
+
+
+        <record id="hr_payroll.hr_rule_basic" model="hr.salary.rule">
+            <field name="name">Salaire de base</field>
+            <field name="code">BASE</field>
+            <field name="sequence">1</field>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">La règle du salaire de base</field>
+        </record>
+
+        <record id="hr_rule_penalite_retard" model="hr.salary.rule">
+            <field name="name">Penalite retard</field>
+            <field name="code">PR</field>
+            <field name="sequence">99999916</field>
+            <field name="category_id" ref="AB"/>
+            <field name="note">La règle du penalite de retard</field>
+        </record>
+
+        <record id="hr_rule_basic_hor" model="hr.salary.rule">
+            <field name="name">Jours Absences Impayés</field>
+            <field name="code">AB</field>
+            <field name="sequence">99999915</field>
+            <field name="category_id" ref="AB"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.Unpaid and worked_days.Unpaid.number_of_hours or False
+            </field>
+            <field name="amount_select">percentage</field>
+           <!--  <field name="amount_percentage_base">contract.wage</field> -->
+            <field name="quantity">worked_days.Unpaid.number_of_days</field>
+            <field name="amount_percentage_base">(contract.wage / (worked_days.Unpaid.number_of_days + worked_days.WORK100.number_of_days))</field>
+            <field name="amount_percentage" eval="100"/>
+            <field name="note">Les jours de congés impayés</field>
+        </record>
+
+        <!-- <record id="hr_rule_basic_hours_abs" model="hr.salary.rule">
+            <field name="name">Heures Absences</field>
+            <field name="code">ABH</field>
+            <field name="sequence">99999914</field>
+            <field name="category_id" ref="AB"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = worked_days.WORK100 and worked_days.WORK100.number_of_abs_hours or False
+            </field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.wage</field>
+            <field name="quantity">worked_days.WORK100.number_of_abs_hours</field>
+            <field name="amount_percentage">0</field>
+            <field name="note">Les Heures manquantes dans le pointage</field>
+        </record> -->
+        <record id="hr_rule_basic_h_supp_vg" model="hr.salary.rule">
+            <field name="name">Heures supplémenataires +25%</field>
+            <!--<field name="parent_rule_id" ref="hr_rule_basic_hor"/>-->
+            <field name="code">HS25</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.HS25 and inputs.HS25.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="quantity">inputs.HS25.amount</field>
+            <field name="amount_percentage">125</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire du contrat, sur la valeur qu'on a rempli dans le salaire, et 125%.
+            </field>
+        </record>
+
+        <record id="hr_rule_basic_h_supp_nuit" model="hr.salary.rule">
+            <field name="name">Heures supplémenataires de nuit +50%</field>
+            <!--<field name="parent_rule_id" ref="hr_rule_basic_hor"/>-->
+            <field name="code">HSN50</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.HSN50 and inputs.HSN50.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="quantity">inputs.HSN50.amount</field>
+            <field name="amount_percentage">150</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire travaillé dans les nuits, sur la
+                valeur qu'on a rempli dans le salaire, et 125%.
+            </field>
+        </record>
+        <record id="hr_rule_basic_h_supp_dimanche" model="hr.salary.rule">
+            <field name="name">Heures supplémenataires de Dimanche +50%</field>
+            <!--<field name="parent_rule_id" ref="hr_rule_basic_hor"/>-->
+            <field name="code">HSD50</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.HSD50 and inputs.HSD50.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="quantity">inputs.HSD50.amount</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="amount_percentage">150</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire travaillé dans les Dimanche, sur la
+                valeur qu'on a rempli dans le salaire, et 150%.
+            </field>
+        </record>
+        <record id="hr_rule_normaly" model="hr.salary.rule">
+            <field name="name">Heures normaux</field>
+            <field name="code">NORMA</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.NORMA and inputs.NORMA.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="quantity">inputs.NORMA.amount</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="amount_percentage">100</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire travaillé dans les heures normaux.
+            </field>
+        </record>
+        <record id="hr_rule_input_normaly" model="hr.rule.input">
+            <field name="name">Heures normaux</field>
+            <field name="code">NORMA</field>
+            <field name="input_id" ref="hr_rule_normaly"/>
+        </record>
+        <record id="hr_rule_holiday" model="hr.salary.rule">
+            <field name="name">Heures Jours Feriers</field>
+            <field name="code">JFer</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.JFer and inputs.JFer.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="quantity">inputs.JFer.amount</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="amount_percentage">100</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire travaillé dans les heures jours feriers.
+            </field>
+        </record>
+        <record id="hr_rule_input_holiday" model="hr.rule.input">
+            <field name="name">Heures Jours Feriers</field>
+            <field name="code">JFer</field>
+            <field name="input_id" ref="hr_rule_holiday"/>
+        </record>
+        <record id="hr_rule_breastfeeding" model="hr.salary.rule">
+            <field name="name">Heures d'Allaitement</field>
+            <field name="code">HALL</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.HALL and inputs.HALL.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="quantity">inputs.HALL.amount</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="amount_percentage">100</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire travaillé dans les allaitement.
+            </field>
+        </record>
+        <record id="hr_rule_input_breastfeeding" model="hr.rule.input">
+            <field name="name">Allaitement</field>
+            <field name="code">HALL</field>
+            <field name="input_id" ref="hr_rule_breastfeeding"/>
+        </record>
+        <record id="hr_rule_input_supp_nuit" model="hr.rule.input">
+            <field name="name">Heures supplémenataires (Nuits): +50%</field>
+            <field name="code">HSN50</field>
+            <field name="input_id" ref="hr_rule_basic_h_supp_nuit"/>
+        </record>
+        <record id="hr_rule_input_supp_sunday" model="hr.rule.input">
+            <field name="name">Heures supplémenataires (Dimanche): +50%</field>
+            <field name="code">HSD50</field>
+            <field name="input_id" ref="hr_rule_basic_h_supp_dimanche"/>
+        </record>
+
+        <record id="hr_rule_input_suppv" model="hr.rule.input">
+            <field name="name">Heures supplémenataires: +25%</field>
+            <field name="code">HS25</field>
+            <field name="input_id" ref="hr_rule_basic_h_supp_vg"/>
+        </record>
+
+        <record id="hr_rule_basic_h_supp_cq" model="hr.salary.rule">
+            <field name="name">Heures supplémenataires: +50%</field>
+            <!--<field name="parent_rule_id" ref="hr_rule_basic_hor"/>-->
+            <field name="code">HS50</field>
+            <field name="sequence">14</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.HS50 and inputs.HS50.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.salary_per_h</field>
+            <field name="quantity">inputs.HS50.amount</field>
+            <field name="amount_percentage">150</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="False"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire du contrat , sur la valeur qu'on a
+                rempli dans le salaire, et 150%.
+            </field>
+        </record>
+        <record id="hr_rule_input_suppc" model="hr.rule.input">
+            <field name="name">Heures supplémenataires +50%</field>
+            <field name="code">HS50</field>
+            <field name="input_id" ref="hr_rule_basic_h_supp_cq"/>
+        </record>
+
+
+        <record id="hr_rule_basic_jour_ferie" model="hr.salary.rule">
+            <field name="name">Jour Férié</field>
+            <!--<field name="parent_rule_id" ref="hr_rule_basic_hor"/>-->
+            <field name="code">JF</field>
+            <field name="sequence">8</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.JF and inputs.JF.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">contract.wage</field>
+            <field name="quantity">inputs.JF.amount</field>
+            <field name="amount_percentage">200</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="note">Pour le calcul on se base sur le “Salaire” horaire du contrat , sur la valeur qu'on a
+                rempli dans le salaire, et 200%.
+            </field>
+        </record>
+
+        <record id="hr_rule_input_jour_ferie" model="hr.rule.input">
+            <field name="name">Jour Férié</field>
+            <field name="code">JF</field>
+            <field name="input_id" ref="hr_rule_basic_jour_ferie"/>
+        </record>
+
+
+        <record id="hr_rule_basic_avance" model="hr.salary.rule">
+            <field name="name">Avance</field>
+            <field name="code">AV</field>
+            <field name="sequence">99999918</field>
+            <field name="category_id" ref="AV"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.AV and inputs.AV.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">inputs.AV.amount</field>
+            <field name="amount_percentage">100</field>
+
+            <field name="quantity">1.0</field>
+            <field name="appears_on_payslip" eval="True"/>
+
+            <field name="note">le montant de l'avance que l'employee a pris</field>
+        </record>
+
+
+        <record id="hr_rule_input_avance" model="hr.rule.input">
+            <field name="name">Avance</field>
+            <field name="code">AV</field>
+            <field name="input_id" ref="hr_rule_basic_avance"/>
+        </record>
+
+
+        <record id="hr_rule_basic_pret_cnss" model="hr.salary.rule">
+            <field name="name">Pret</field>
+            <field name="code">CREDIT</field>
+            <field name="sequence">99999919</field>
+            <field name="category_id" ref="PR"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = inputs.CREDIT and inputs.CREDIT.amount or False</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage_base">inputs.CREDIT.amount</field>
+            <field name="amount_percentage">100</field>
+
+            <field name="quantity">1.0</field>
+            <field name="appears_on_payslip" eval="True"/>
+
+            <field name="note">le montant mensuel du pret CNSS</field>
+        </record>
+
+        <record id="hr_rule_input_pret_cnss" model="hr.rule.input">
+            <field name="name">Pret</field>
+            <field name="code">CREDIT</field>
+            <field name="input_id" ref="hr_rule_basic_pret_cnss"/>
+        </record>
+
+        <!-- Prime de Présence  -->
+        <record id="hr_rule_basic_prime_presence" model="hr.salary.rule">
+            <field name="name">Prime Presence</field>
+            <field name="code">PRIME_PR</field>
+            <field name="sequence">10</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_pr</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime de presence</field>
+        </record>
+
+        <!-- Prime de risque -->
+        <record id="hr_rule_basic_prime_risque" model="hr.salary.rule">
+            <field name="name">Prime de respnsabilité</field>
+            <field name="code">PRIME_RSQ</field>
+            <field name="sequence">13</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_risque</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime de respnsabilité</field>
+        </record>
+
+        <!-- Prime de fonction -->
+        <record id="hr_rule_basic_prime_function" model="hr.salary.rule">
+            <field name="name">Prime fonction</field>
+            <field name="code">prime_function</field>
+            <field name="sequence">14</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_function</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime de fonction</field>
+        </record>
+
+        <!-- Prime divers -->
+        <record id="hr_rule_basic_prime_aide" model="hr.salary.rule">
+            <field name="name">Prime divers</field>
+            <field name="code">PRIME_AIDE</field>
+            <field name="sequence">14</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_aide</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime divers</field>
+        </record>
+
+        <!-- Prime de lait -->
+        <record id="hr_rule_basic_prime_lait" model="hr.salary.rule">
+            <field name="name">Prime Lait</field>
+            <field name="code">PRIME_LAIT</field>
+            <field name="sequence">2159</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_lait</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime de lait</field>
+        </record>
+
+
+        <!-- Prime  Ind.de Transport  -->
+        <record id="hr_rule_basic_prime_trsport" model="hr.salary.rule">
+            <field name="name">Ind.de Transport</field>
+            <field name="code">PRIME_TRSPRT</field>
+            <field name="sequence">11</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_trspr</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime Transport</field>
+        </record>
+
+
+
+
+        <!-- Prime  Prime indemnite de fonction  -->
+        <record id="hr_rule_basic_prime_excep" model="hr.salary.rule">
+            <field name="name">Prime d'encouragement</field>
+            <field name="code">prime_excep</field>
+            <field name="sequence">12</field>
+            <field name="category_id" ref="PRIME"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.prime_excep</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="qty_depend_on_ratio" eval="True"/>
+            <field name="amount_depend_on_ratio" eval="False"/>
+            <field name="note">le montant du prime indemnite de fonction</field>
+        </record>
+
+
+        <record id="hr_payroll_rules_CNSS1" model="hr.salary.rule">
+            <field name="category_id" ref="SALC"/>
+            <field name="name">CNSS</field>
+            <field name="code">CNSS</field>
+            <field name="sequence">2156</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.type_id.name not in ['SIVP','GERANT']</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage">9.18</field>
+            <field name="amount_percentage_base">categories.BRUT</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="note">C'est la valeur de CNSS de chaque salarié , qui s'appuit sur la valeur du salaire "Brut"
+                calculé.
+            </field>
+        </record>
+        <record id="hr_payroll_rules_CNSS_employer" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="parent_rule_id" ref="hr_payroll_rules_CNSS1"/>
+            <field name="name">CNSS Patronale</field>
+            <field name="code">CNSSP</field>
+            <field name="sequence">2157</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage">16.57</field>
+            <field name="amount_percentage_base">categories.BRUT</field>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">C'est la valeur de CNSS patronale qui se base sur la valeur de salaire "Brut". Elle doit
+                être réglée chaque trimestre .Cette valeur appartient à la rubrique "Cotisations Patronales"
+            </field>
+        </record>
+        <record id="hr_payroll_rules_CNSS_accident" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="parent_rule_id" ref="hr_payroll_rules_CNSS1"/>
+            <field name="name">Accident de travail</field>
+            <field name="code">ACCIDENT</field>
+            <field name="sequence">2158</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">percentage</field>
+            <field name="amount_percentage">1.0</field>
+            <field name="amount_percentage_base">categories.BRUT</field>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">C'est la valeur d'accident de travail qui se base sur la valeur de salaire "Brut". Elle
+                doit être réglée chaque trimestre .Cette valeur appartient à la rubrique "Cotisations Patronales"
+            </field>
+        </record>
+
+        <record id="hr_payroll.hr_rule_taxable" model="hr.salary.rule">
+            <field name="name">Salaire Brut</field>
+            <field name="code">BRUT</field>
+            <field name="sequence">100</field>
+            <field name="category_id" ref="hr_payroll.GROSS"/>
+            <field name="amount_python_compute">result = categories.BASE + categories.INDM - categories.DED + categories.PRIME</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="note">la valeur du salaire Brut se base sur la somme du salaire de base et les indemnités tout
+                en faisant la soustraction des déductions.
+            </field>
+        </record>
+
+
+        <record id="hr_rule_secu" model="hr.salary.rule">
+            <field name="name">Plafond Securite Sociale</field>
+            <field name="code">SECU</field>
+            <field name="sequence">1010</field>
+            <field name="category_id" ref="SECU"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.employee_id.company_id.plafond_secu</field>
+        </record>
+
+
+        <record id="hr_payroll_rules_MARIE" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">MARIE</field>
+            <field name="code">MARIE</field>
+            <field name="sequence">20446</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.marital=='married'</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_fix">150</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Lorsque le salarié se trouve marié, une déduction ( d'impôt) de 150 TND s'effectue.
+            </field>
+        </record>
+
+        <record id="hr_payroll_rules_ENF1" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">ENF1</field>
+            <field name="code">F1</field>
+            <field name="sequence">20447</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.children and employee.children >= 1</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_fix">90</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Si le salarié possède un enfant en charge (premier enfant) alors il subit une déduction
+                d'impôt de 90 TND.
+            </field>
+        </record>
+        <record id="hr_payroll_rules_ENF2" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">ENF2</field>
+            <field name="code">F2</field>
+            <field name="sequence">20448</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.children and employee.children >= 2</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_fix">75</field>
+            <!--<field name="amount_python_compute">result = 90 + 75</field>-->
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Si le salarié possède deux enfants en charge (deuxième enfant) alors il subit une
+                déduction d'impôt de 75 TND .
+            </field>
+        </record>
+        <record id="hr_payroll_rules_ENF3" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">ENF3</field>
+            <field name="code">F3</field>
+            <field name="sequence">20449</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.children and employee.children >= 3</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_fix">60</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Si le salarié possède trois enfants en charge (troisième enfant) alors il subit une
+                déduction d'impôt de 60 TND .
+            </field>
+        </record>
+        <record id="hr_payroll_rules_ENF4" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">ENF4</field>
+            <field name="code">F4</field>
+            <field name="sequence">20455</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = employee.children and employee.children >= 4</field>
+            <field name="amount_select">fix</field>
+            <field name="amount_fix">45</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Si le salarié possède quatre enfants en charge (quatrième enfant) alors il subit une
+                déduction d'impôt de 45 TND .
+            </field>
+        </record>
+
+        <record id="hr_rule_total_deductionimpot" model="hr.salary.rule">
+            <field name="name">Total Déductions d'impôt</field>
+            <field name="sequence">9999912</field>
+            <field name="category_id" ref="DEDIRPPS"/>
+            <field name="code">TDEDIMP</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.DEDIRPP</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">Cette règle représente la somme de toutes les déductions d'impôt que le salarié peut
+                subir.
+            </field>
+        </record>
+
+        <record id="hr_payroll_rules_ded_sum_famille" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">Déduction impôt famille</field>
+            <field name="code">DEDFAM</field>
+            <field name="sequence">20445</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <!--<field name="amount_python_compute">result = categories.MARIE + categories.ENF1 + categories.ENF2 + categories.ENF3 + categories.ENF4</field>-->
+            <field name="amount_python_compute">result = categories.TDEDIMP</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field eval="[(6, 0, [ref('hr_payroll_rules_MARIE'),ref('hr_payroll_rules_ENF1'), ref('hr_payroll_rules_ENF2'),ref('hr_payroll_rules_ENF3'), ref('hr_payroll_rules_ENF4') ])]"
+                   name="rule_ids"/>
+
+        </record>
+
+        <record id="hr_rule_total_charges_salariales" model="hr.salary.rule">
+            <field name="name">Total des charges salariales</field>
+            <field name="sequence">2510</field>
+            <field name="code">SALC</field>
+            <field name="category_id" ref="other_totals"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.SALC</field>
+            <field name="note">Cette valeur représente la somme de toutes les charges salariales.</field>
+        </record>
+
+
+        <record id="hr_rule_total_retenues" model="hr.salary.rule">
+            <field name="name">Total Retenues</field>
+            <field name="sequence">99999</field>
+            <field name="category_id" ref="other_totals"/>
+            <field name="code">RET</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_python_compute">result = categories.RETENUES</field>
+            <field name="note">Cette règle mais en valeur la somme de toutes les retenues.</field>
+        </record>
+
+        <!--<field name="amount_select">fix</field>
+        <field name="quantity">1</field>
+        <field name="amount_fix">150</field>-->
+
+        <record id="hr_rule_cumul_imposable" model="hr.salary.rule">
+            <field name="name">Cumul Imposable</field>
+            <field name="sequence">99999</field>
+            <field name="category_id" ref="C_IMP"/>
+            <field name="code">C_IMP</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_python_compute">result = BRUT - categories.SALC</field>
+            <field name="note">Le calcul de cette règle se base sur la soustraction des charges salariales du salaire
+                Brut afin d'avoir comme résultat le cumul imposable qui est en autre terme le salaire imposable.
+            </field>
+        </record>
+
+        <record id="hr_rule_investissement" model="hr.salary.rule">
+            <field name="name">Reinvestissement</field>
+            <field name="sequence">999999</field>
+            <field name="category_id" ref="REINV"/>
+            <field name="code">REINV</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_python_compute">result = contract.REINV</field>
+            <field name="note">Montant de réinvestissement annuel .
+            </field>
+        </record>
+
+        <record id="hr_rule_cumul_imposableannuel" model="hr.salary.rule">
+            <field name="name">Cumul Imposable Annuel</field>
+            <field name="sequence">999999</field>
+            <field name="category_id" ref="C_IMPAN"/>
+            <field name="code">C_IMPAN</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_python_compute">result = (BRUT - categories.SALC)*contract.number_month - contract.REINV</field>
+            <field name="note">A ce niveau, on distingue un cumul annuel : le cumul imposable multiplié par Nombre de mois .
+            </field>
+        </record>
+
+        <record id="hr_payroll_rules_frais_pro" model="hr.salary.rule">
+            <field name="category_id" ref="DEDIRPP"/>
+            <field name="name">Frais professionnels</field>
+            <field name="code">FPRO</field>
+            <field name="sequence">999999</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="amount_python_compute">result = 2000 if (categories.C_IMPAN * 0.10 > 2000) else (categories.C_IMPAN * 0.10)</field>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="note">Le calcul des frais professionnels se base sur 10% du cumul imposable</field>
+
+        </record>
+
+        <record id="hr_rule_cumul_impo_apres_ded" model="hr.salary.rule">
+            <field name="name">Cumul Imposable Aprés Déduction</field>
+            <field name="sequence">1999999</field>
+            <field name="category_id" ref="C_IMPDED"/>
+            <field name="code">C_IMPDED</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="amount_python_compute">result = round((C_IMPAN - categories.DEDIRPP),1)</field>
+            <field name="note">Le cumul imposable aprés déduction est la valeur du cumul trouvée aprés avoir soustraire
+                toutes les déductions d'impôt.
+            </field>
+        </record>
+
+    <record id="hr_payroll_rules_TRANCHE0" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE0</field>
+        <field name="code">T0</field>
+        <field name="sequence">15999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = categories.C_IMPDED  > 0 </field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">0</field>
+        <field name="amount_percentage_base">categories.C_IMPDED</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">la première tranche représente l'intervalle [0..5000 000] : voir si le cumul imposable aprés déduction appartient à cet intervalle alors on lui attribut 0% .</field>
+    </record>
+    
+    <record id="hr_payroll_rules_TRANCHE1" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE1</field>
+        <field name="code">T1</field>
+        <field name="sequence">2999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (categories.C_IMPDED - 5000.000) > 0  </field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">26</field>
+        <field name="amount_percentage_base">min(categories.C_IMPDED, 20000.000) - 5000.001</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">La deuxième tranche représente l'intervalle [5000 000..20000 000].Le calcul se base sur une condition qui vérifie si le cumul imosable appartient à cet inetrvalle ou non, et si c'est le cas alors (on cherche le min entre le cumul imposable aprés déduction et 5000.000 et on fait soustraire 1500.001)*15% . </field>
+    </record>
+    
+    <record id="hr_payroll_rules_TRANCHE2" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE2</field>
+        <field name="code">T2</field>
+        <field name="sequence">3999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (categories.C_IMPDED - 20000.000) > 0  </field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">28</field>
+        <field name="amount_percentage_base">min(categories.C_IMPDED, 30000.000) - 20000.001</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">La Troisièmen tranche représente l'intervalle [20000 000..30 000 000].Le calcul se base sur une condition qui vérifie si le cumul imosable appartient à cet inetrvalle ou non, et si c'est le cas alors (on cherche le min entre le cumul imposable aprés déduction et 10000.000 et on fait soustraire 5000.001)*20% . </field>
+    </record>
+    
+    <record id="hr_payroll_rules_TRANCHE3" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE3</field>
+        <field name="code">T3</field>
+        <field name="sequence">4999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (categories.C_IMPDED - 30000.000) > 0 </field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">32</field>
+        <field name="amount_percentage_base">min(categories.C_IMPDED, 50000.000) - 30000.001</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">La quatrième tranche représente l'intervalle [30 000 000..50 000 000].Le calcul se base sur une condition qui vérifie si le cumul imosable appartient à cet inetrvalle ou non, et si c'est le cas alors (on cherche le min entre le cumul imposable aprés déduction et 20000.000 et on fait soustraire 10000.001)*25% . </field>
+    </record>
+    
+    <record id="hr_payroll_rules_TRANCHE4" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE4</field>
+        <field name="code">T4</field>
+        <field name="sequence">6999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (categories.C_IMPDED - 50000.001) > 0</field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">35</field>
+        <field name="amount_percentage_base">min(categories.C_IMPDED, 500000.000) - 50000.001</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">La cinquième tranche représente l'intervalle [50 000 000..500 000 000].Le calcul se base sur une condition qui vérifie si le cumul imosable appartient à cet inetrvalle ou non, et si c'est le cas alors (on cherche le min entre le cumul imposable aprés déduction et 50000.000 et on fait soustraire 20000.001)*30% .</field>
+    </record>
+    
+    <record id="hr_payroll_rules_TRANCHE5" model="hr.salary.rule">
+        <field name="category_id" ref="TRANCHEIMPO"/>
+        <field name="name">TRANCHE5</field>
+        <field name="code">T5</field>
+        <field name="sequence">7999999</field>
+        <field name="condition_select">python</field>
+        <field name="condition_python">result = (categories.C_IMPDED - 500000.000) > 0 </field>
+        <field name="amount_select">percentage</field>
+        <field name="amount_percentage">35</field>
+        <field name="amount_percentage_base">categories.C_IMPDED</field>
+        <field name="appears_on_payslip" eval="False"/>
+        <field name="note">La dernière tranche représente l'intervalle [50 000 000 .. +oo].Le calcul se base sur une condition qui vérifie si le cumul imosable appartient à cet inetrvalle ou non. </field>
+    </record>
+        <record id="hr_rule_IRPP" model="hr.salary.rule">
+            <field name="name">L'Impôt sur le Revenu des Personnes Physiques IRPP</field>
+            <field name="sequence">8999999</field>
+            <field name="category_id" ref="IRPP"/>
+            <field name="code">IRPP</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = contract.type_id.name !='SIVP'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (categories.TRANCHEIMPO)/contract.number_month</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="note">l'IRPP du salarié qui se base sur la somme des valeurs des tranches d'impôt et qu'on
+                dévise par Nombre de  mois pour ne pas avoir l'IRPP annuel .
+            </field>
+        </record>
+    <record id="hr_rule_CSS" model="hr.salary.rule">
+            <field name="name">Cotisation sociale</field>
+            <field name="sequence">9999999</field>
+            <field name="category_id" ref="CSS"/>
+            <field name="code">CSS</field>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result = categories.C_IMPDED  >= 0 and contract.type_id.name !='SIVP'</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = (categories.C_IMPDED)*0.01/contract.number_month</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="note">Cotisation sociale loi de finance 2018
+            </field>
+
+        </record>
+
+        <record id="hr_payroll.hr_rule_net" model="hr.salary.rule">
+            <field name="name">Net</field>
+            <field name="sequence">100000000</field>
+            <field name="category_id" ref="hr_payroll.NET"/>
+            <field name="amount_python_compute">result = categories.C_IMP - categories.IRPP - categories.AV - categories.AB - categories.PR - categories.CSS</field>
+            <field name="note">C'est le salaire Net qui est le salaire Brut - toutes les retenues</field>
+        </record>
+
+        <record id="hr_rule_total_charges_patronales" model="hr.salary.rule">
+            <field name="name">Total Charges Patronales</field>
+            <field name="sequence">150000</field>
+            <field name="code">TCOMP</field>
+            <field name="category_id" ref="other_totals"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.COMP</field>
+            <field name="note">la somme des charges patronales.</field>
+        </record>
+
+
+        <record id="hr_rule_total" model="hr.salary.rule">
+            <field name="name">Cout total pour l'entreprise</field>
+            <field name="sequence">200000</field>
+            <field name="code">TOTAL</field>
+            <field name="category_id" ref="TOTAL"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BRUT + categories.COMP</field>
+            <field name="note">le coût total de l'entreprise qui est la somme du salaire brut et les cotistaions
+                patronales.
+            </field>
+        </record>
+
+
+        <record id="hr_payroll_rules_C1_employe" model="hr.salary.rule">
+            <field name="category_id" ref="SALC"/>
+            <field name="name">Assurance maladie, maternite, invalidite, deces, solidaritee des personnes agees et
+                handicapees
+            </field>
+            <field name="code">C1</field>
+            <field name="sequence">2040</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="quantity">1.0</field>
+            <field name="amount_fix">0.00</field>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="note">le montant assurance du salarié qui appartient aux charges salariales.</field>
+        </record>
+
+        <record id="hr_payroll_rules_C1_employer" model="hr.salary.rule">
+            <field name="category_id" ref="hr_payroll.COMP"/>
+            <field name="parent_rule_id" ref="hr_payroll_rules_C1_employe"/>
+            <field name="name">Assurance maladie, maternite, invalidite, deces, solidaritee des personnes agees et
+                handicapees
+            </field>
+            <field name="code">C1P</field>
+            <field name="sequence">2045</field>
+            <field name="condition_select">none</field>
+            <field name="amount_select">fix</field>
+            <field name="quantity">1.0</field>
+            <field name="amount_fix">0.00</field>
+            <field name="register_id" ref="hr_CNSS_register"/>
+            <field name="appears_on_payslip" eval="False"/>
+            <field name="note">le monatnt assurance de l'entreprise qui appartient aux cotisations patronales.</field>
+        </record>
+        <!-- Salary Structure -->
+
+
+        <record id="hr_payroll_salary_structure_base" model="hr.payroll.structure">
+            <field name="code">Tu-Base-horaire</field>
+            <field name="name">Cotisations de base Employe Tunisienne</field>
+            <field eval="[(6, 0, [ref('hr_rule_breastfeeding'), ref('hr_rule_normaly'), ref('hr_rule_holiday'), ref('hr_rule_basic_h_supp_dimanche'), ref('hr_payroll.hr_rule_basic'), ref('hr_rule_basic_hor'), ref('hr_rule_basic_h_supp_nuit'), ref('hr_rule_penalite_retard'), ref('hr_rule_basic_jour_ferie'),ref('hr_rule_basic_h_supp_vg'),ref('hr_rule_basic_h_supp_cq'),                     
+                      ref('hr_payroll_rules_MARIE'), ref('hr_payroll.hr_rule_taxable'),ref('hr_rule_basic_prime_presence'),ref('hr_rule_basic_prime_risque'),ref('hr_rule_basic_prime_function'),ref('hr_rule_basic_prime_lait') ,ref('hr_rule_basic_prime_aide'),ref('hr_rule_basic_prime_trsport') ,ref('hr_rule_basic_prime_excep'), ref('hr_payroll_rules_ENF1'), ref('hr_payroll_rules_ENF2'), ref('hr_payroll_rules_ENF3'), ref('hr_payroll_rules_ENF4'), ref('hr_payroll_rules_frais_pro'),ref('hr_rule_IRPP'),ref('hr_rule_CSS'), ref('hr_payroll.hr_rule_net'),ref('hr_rule_basic_avance'),ref('hr_rule_basic_pret_cnss'), ref('hr_rule_secu') , ref('hr_rule_total'), ref('hr_rule_total_charges_salariales'), ref('hr_rule_total_retenues'), ref('hr_rule_cumul_imposable'), ref('hr_rule_total_charges_patronales'), ref('hr_payroll_rules_C1_employe'), ref('hr_rule_total_deductionimpot'), ref('hr_payroll_rules_CNSS1'), ref('hr_rule_cumul_imposableannuel'),ref('hr_rule_investissement'), ref('hr_rule_cumul_impo_apres_ded'), ref('hr_payroll_rules_TRANCHE0'), ref('hr_payroll_rules_TRANCHE1'), ref('hr_payroll_rules_TRANCHE2'), ref('hr_payroll_rules_TRANCHE4'), ref('hr_payroll_rules_TRANCHE3'), ref('hr_payroll_rules_TRANCHE5')])]"
+                   name="rule_ids"/>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="parent_id" ref="hr_payroll.structure_base"/>
+            <field name="note">Cette rubrique représente la structure des employés tunisiens.</field>
+        </record>
+
+    </data>
+</odoo>
+
+<!-- ref('hr_rule_basic_hours_abs'), -->

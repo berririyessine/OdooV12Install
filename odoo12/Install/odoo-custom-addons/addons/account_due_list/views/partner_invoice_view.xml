@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+    <record id="partner_invoice_view" model="ir.ui.view" >
+      <field name="name">partner.invoice.form</field>
+      <field name="model">partner.invoice.details</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet string="Détailles Factures Client" >
+            <group>
+                <div class="row">
+                  <div class="col">
+                    <span>  De:  </span>
+                  </div>
+                  <div class="col">
+
+                    <span>  A:   </span>
+                  </div>
+
+                </div>
+                <br/>
+
+                <div class="row">
+                  <div class="col">
+                    <field name="date_from"/>
+                  </div>
+                  <div class="col">
+
+                    <field name="date_to"/>
+                  </div>
+
+                </div>
+             </group>
+            <group>
+
+                  <group>
+                <field name="partner_id"  string="Client"/>
+
+              </group>
+            </group>
+          </sheet>
+          <footer>
+            <button name="GenererDetails"  string="Générer" type="object" default_focus="1" class="oe_highlight"/>
+
+            <button string="Cancel" class="btn btn-default" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="partner_invoice_view_action">
+      <field name="name">Détaille Facture Client</field>
+      <field name="res_model">partner.invoice.details</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="detaille_facture"
+      name="Détailles Factures/BC Client"
+      parent="account.menu_finance_entries"
+      action="partner_invoice_view_action"/>
+
+
+
+    </data>
+  </odoo>

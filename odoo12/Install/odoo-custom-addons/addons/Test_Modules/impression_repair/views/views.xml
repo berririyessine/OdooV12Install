@@ -1,0 +1,52 @@
+<odoo>
+  <data>
+    <!-- Formulaire de siasie -->
+
+    <record id="repair_list_view" model="ir.ui.view" >
+      <field name="name">rep.list.form</field>
+      <field name="model">rep.list</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet string="Liste des reparations" >
+            <group>
+                  <group>
+                <!-- <field name="partner_id"  string="Client"/> -->
+                <field name="orders"  string="Ordres"/>
+              </group>
+            </group>
+          </sheet>
+          <footer>
+            <button name="GenererDetails"  string="Générer" type="object" default_focus="1" class="oe_highlight"/>
+            <button string="Cancel" class="btn btn-default" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+<!-- explicit list view definition -->
+
+    <record model="ir.actions.act_window" id="partner_attest_view_action">
+      <field name="name">order_repair</field>
+      <field name="res_model">rep.list</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+<!-- explicit list view definition -->
+
+          <record id="inherit_partner_file" model="ir.ui.view">
+        <field name="name">repair.form</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//form//sheet" position="before">
+        <header>
+            <button name="%(impression_repair.partner_attest_view_action)d" string="Imprimer Liste" type="action"  context="{'default_partner_id':id}"/>
+        </header>
+
+            </xpath>
+        </field>
+      </record>
+  </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_workflow_tender_workflow_tender,workflow_tender.workflow_tender,model_workflow_tender_workflow_tender,,1,0,0,0

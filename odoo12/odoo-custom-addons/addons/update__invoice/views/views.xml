@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="update_invoice_datapro" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form" />
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button name="Return_To_Dratf_State" type="object" states="open,paid"
+						string="Modifier Facture" class="oe_highlight" />
+                </header>
+                <field name="move_name" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state', '!=', 'draft')]}
+					</attribute>
+                    <attribute name="string">Force Number</attribute>
+                    <attribute name="help">Force invoice number. Use this field if
+						you don't want to use the default numbering
+					</attribute>
+                    <attribute name="invisible">0</attribute>
+                    <attribute name="groups">account_invoice_update.group_allow_invoice_force_number
+					</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="supplier_update_invooice_data_pro" model="ir.ui.view">
+            <field name="name">account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form" />
+            <field name="arch" type="xml">
+
+
+   <!-- <xpath expr='//form' position="attributes">
+                    <attribute name="duplicate" >0</attribute>
+                </xpath> -->
+
+                <header position="inside">
+                    <button name="Return_To_Dratf_State" type="object" states="open"
+            string="Modifier Facture" class="oe_highlight" />
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

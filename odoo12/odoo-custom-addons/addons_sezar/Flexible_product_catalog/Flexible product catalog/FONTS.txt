@@ -1,0 +1,39 @@
+FONTS
+
+5 Fonts Used; 0 Missing, 0 Embedded, 0 Incomplete, 0 Protected
+
+- Name: MyriadPro-Regular; Type: OpenType Type 1, Status: OK
+Filename: MyriadPro-Regular.otf
+Full Name: Myriad Pro
+First Used on Page: 7
+Protected: No
+Download: system font, should be installed on your computer by default
+
+- Name: TitilliumText22L-Bold; Type: OpenType Type 1, Status: OK
+Filename: TitilliumText22L005.otf
+Full Name: TitilliumText22L-Bold
+First Used on Page: 11
+Protected: No
+Download: http://www.fontsquirrel.com/fonts/TitilliumText
+
+- Name: TitilliumText22L-Regular; Type: OpenType Type 1, Status: OK
+Filename: TitilliumText22L003.otf
+Full Name: TitilliumText22L-Regular
+First Used on Page: 12
+Protected: No
+Download: http://www.fontsquirrel.com/fonts/TitilliumText
+
+- Name: TrebuchetMS; Type: OpenType TrueType, Status: OK
+Filename: Trebuchet MS.ttf
+Full Name: Trebuchet MS
+First Used on Page: 7
+Protected: No
+Download: http://www.fontsquirrel.com/fonts/TitilliumText
+
+- Name: TrebuchetMS-Bold; Type: OpenType TrueType, Status: OK
+Filename: Trebuchet MS Bold.ttf
+Full Name: Trebuchet MS Bold
+First Used on Page: 7
+Protected: No
+Download: system font, should be installed on your computer by default
+

@@ -1,0 +1,343 @@
+<odoo>
+    <data>
+        <report
+        id="repair_print_views"
+        string="Bon de réparation"
+        model="repair.order"
+        report_type="qweb-pdf"
+        file="repair_category.repair_print_views"
+        name="repair_category.template_repair_print_views"
+        attachment_use="False"/>
+<template id="repair_category.template_repair_print_views">
+
+  <t t-call="web.html_container">
+    <t t-call="web.external_layout">
+        <div class="page">
+          <style>
+            .text-center{
+            text-align:center!important;
+            }
+            hr {
+            border-top: 2px solid black;
+            width :100%;
+            padding-right : 100%;
+            }
+            .titles{
+            color:black!important;
+            font-size : 14px;
+            font-weight : bold;
+            }
+
+            table, th, td{
+            border : 1px solid black;
+            padding : 5px;
+            }
+            td{
+            padding:11px!important;
+            }
+          </style>
+          <br/>
+
+
+    <t t-foreach="docs" t-as="doc"><br/>
+    <div class="row">
+      <div class="col-xs-5" style="width:43%;" >
+    <div style="font-size:15px;padding-left:15px;;color:black;"> <br/>
+    <h4 style="color:#0C67B3;">
+ <span  t-field="doc.company_id.name" />
+</h4>
+    <b>   <span>Adresse :</span> </b> <span  t-field="doc.company_id.street" />  <br/>
+    <b>   <span>TÈl :</span> </b> <span  t-field="doc.company_id.phone" />  <br/>
+    <b>   <span>E-mail :</span> </b>  <span  t-field="doc.company_id.email" />  <br/>
+  </div>
+</div>
+ <div class="col-xs-7" style="width:57%;">
+   <!-- insertion logo -->
+ <center>  <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)"  width="180px" height="150px" /> </center><br/><br/>
+   </div>
+   </div>
+
+   <div class="row">
+   <div class="col-xs-5"  style="width:43%;">
+     <h4 style="color:#064660;"><b>
+         <br/>  Bon de réparation N° : <span t-esc="doc.name"/>
+       </b></h4>
+   </div>
+     <div class="col-xs-7"  style="width:57%;">
+  <div class="raw" style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+  <!-- information Client -->
+
+  <div style="font-size:18px;padding-left:15px;;color:black;">
+
+    <b> <t t-if="doc.partner_id.parent_id.name"> <span  t-field="doc.partner_id.parent_id.name" />
+  </t> <br/> <![CDATA[&nbsp;]]><![CDATA[&nbsp;]]>  (<span  t-field="doc.partner_id.name" />) </b>
+  </div>
+  <table style="border-color: rgba(255,255,255,255); " >
+    <t t-if="doc.partner_id.street">
+  <tr>
+  <td style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > Adresse</td>
+   <td style="border-color: rgba(255,255,255,255);padding-left:7px;font-size:14px;color:black; " >:  </td>
+   <td style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " >   <span  t-field="doc.partner_id.street" /></td>
+   <td style="border-color: rgba(255,255,255,255); " ></td>
+ </tr>
+</t>
+<t t-if="doc.partner_id.phone">
+ <tr>
+  <td style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > Téléphone</td>
+  <td style="border-color: rgba(255,255,255,255); padding-left:7px;font-size:14px;color:black;" >:  </td>
+  <td style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " > <span  t-field="doc.partner_id.phone" /></td>
+  <td style="border-color: rgba(255,255,255,255); " ></td>
+</tr>
+</t>
+<t t-if="doc.partner_id.email">
+<tr>
+  <td style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > E-mail </td>
+<td style="border-color: rgba(255,255,255,255); padding-left:7px;font-size:14px;color:black;" >:  </td>
+  <td style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " ><span  t-field="doc.partner_id.email" /></td>
+  <td style="border-color: rgba(255,255,255,255); " ></td>
+</tr>
+</t>
+<t t-if="doc.partner_id.vat">
+<tr>
+  <td style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > MF </td>
+<td style="border-color: rgba(255,255,255,255);padding-left:7px; font-size:14px;color:black;" >:  </td>
+  <td style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " ><span  t-field="doc.partner_id.vat" /></td>
+  <td style="border-color: rgba(255,255,255,255); " ></td>
+</tr>
+</t>
+  </table>
+
+</div>
+</div>
+</div>
+  <br/><br/>
+   <table class="table table-sm o_main_table" style="width:100%;">
+       <thead>
+           <tr>
+               <th class="text-center"><span><center>Réference</center></span></th>
+               <th class="text-center"><span><center>Entrée </center></span></th>
+               <th class="text-center"><span><center>Sortie</center></span></th>
+               <th class="text-center"><span><center>Désignation</center></span></th>
+               <th class="text-center"><span><center>Marque</center></span></th>
+               <th class="text-center"><span><center>QTE</center></span></th>
+               <th class="text-center"><span><center>N°Serie</center></span></th>
+               <th class="text-center"><span><center>Pièces</center></span></th>
+               <th class="text-center"><span><center>opération</center></span></th>
+           </tr>
+       </thead>
+
+       <tbody class="sale_tbody">
+
+         <td>
+         <center>   <span t-esc="doc.name"/> </center>
+         </td>
+         <td>
+         <center>  <span t-esc="doc.date_repair.strftime('%d/%m/%Y')"/> </center>
+         </td>
+         <td>
+         <center><span t-esc="doc.date_end.strftime('%d/%m/%Y')"/> </center>
+         </td>
+         <td>
+       <center>     <span t-esc="doc.product_id.name"/> </center>
+         </td>
+         <td>
+       <center>     <span t-esc="doc.marque_id.name"/> </center>
+         </td>
+         <td>
+        <center> <span t-esc="'{0:,.0f}'.format(doc.product_qty)"/></center>
+         </td>
+         <td>
+       <center>     <span t-esc="doc.lot_id.name"/> </center>
+         </td>
+
+         <td>
+           <t t-foreach="doc.operations" t-as="l">
+                <span style="color:red;"><b>-</b></span> <span t-esc="l.name"/> <span style="color:red;">(<span t-esc="'{0:,.0f}'.format(l.product_uom_qty)"/> pièces) <br/> </span>
+           </t>
+         </td>
+         <td>
+           <t t-foreach="doc.fees_lines" t-as="line">
+        <span style="color:red;"><b>-</b> </span>  <span t-esc="line.name"/>  <span style="color:red;">(<span t-esc="'{0:,.0f}'.format(line.product_uom_qty)"/> pièces) <br/> </span>
+           </t>
+         </td>
+       </tbody>
+     </table>
+     <div class="footer">
+       <div class="text-center" style="border-top: 1px solid Gainsboro;">
+         <ul class="list-inline" name="financial_infos">
+           <br/>
+          <center>
+            <h4> <span  t-field="doc.company_id.name" /></h4>
+          </center>
+          <br/>
+             <li>
+               <center>
+                 <b> TÈl : </b>
+                 <span  t-field="doc.company_id.phone" />
+                 <b> - E-mail :</b>
+                 <span  t-field="doc.company_id.email" />
+               </center>
+            </li>
+         </ul>
+     </div>
+   </div>
+
+
+
+    </t>
+     </div>
+   </t>
+  </t>
+</template>
+
+
+
+     <report
+        id="repair_print_list_views"
+        model="repair.order"
+        string="Liste des réparations"
+        name="repair_category.template_repair_print_list_views"
+        file="repair_category.repair_print_list_views"
+        report_type="qweb-pdf" />
+
+    <template id="template_repair_print_list_views">
+         <style>
+            .text-center{
+            text-align:center!important;
+            }
+            hr {
+            border-top: 2px solid black;
+            width :100%;
+            padding-right : 100%;
+            }
+            .titles{
+            color:black!important;
+            font-size : 14px;
+            font-weight : bold;
+            }
+
+            table, th, td{
+            border : 1px solid black;
+            padding : 5px;
+            }
+            td{
+            padding:11px!important;
+            }
+          </style>
+        <t t-call="web.html_container">
+
+               <br/>
+               <b>  Industries Moderne du Sahel </b><br/>
+               <b>  Adresse : </b> 000 AV. UMA ROUTE MANZEL KAMEL _ JEMMEL 5020<br/>
+               <b>  TÈl : </b>73583041<br/>
+               <b>  E-mail : </b>sav.industrie22@gmail.com<br/>
+
+         <br/>
+      <t t-foreach="docs" t-as="doc">
+
+
+  <div class="row">
+
+   <div class="col-xs-5"  style="width:43%;">
+     <h4 style="color:#064660;"><b>
+         <br/>  Bon de réparation N° :<span t-esc="doc.name"/>
+       </b></h4>
+   </div>
+     <div class="col-xs-7"  style="width:57%;">
+        <div class="raw" >
+  <!-- information Client -->
+
+          <div style="font-size:18px;padding-left:15px;;color:black;">
+
+             <b> <t t-if="doc.partner_id.parent_id.name"> <span  t-field="doc.partner_id.parent_id.name" />,</t> <span  t-field="doc.partner_id.name" /> </b>
+          </div>
+              <t t-if="doc.partner_id.street">
+
+                    <span style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > Adresse</span>
+                    <span style="border-color: rgba(255,255,255,255);padding-left:7px;font-size:14px;color:black; " >:  </span>
+                    <span style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " >   </span><span  t-field="doc.partner_id.street" />
+
+              </t>
+              <t t-if="doc.partner_id.phone">
+
+                <span style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > Téléphone</span>
+                <span style="border-color: rgba(255,255,255,255); padding-left:7px;font-size:14px;color:black;" >:  </span>
+                <span style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " > </span><span  t-field="doc.partner_id.phone" />
+
+              </t>
+              <t t-if="doc.partner_id.email">
+
+                <span style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > E-mail </span>
+              <span style="border-color: rgba(255,255,255,255); padding-left:7px;font-size:14px;color:black;" >:  </span>
+                <span style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " ></span><span  t-field="doc.partner_id.email" />
+
+
+              </t>
+              <t t-if="doc.partner_id.vat">
+
+                <span style="border-color: rgba(255,255,255,255);padding-left:17px;font-size:14px;color:black;" > MF </span>
+              <span style="border-color: rgba(255,255,255,255);padding-left:7px; font-size:14px;color:black;" >:  </span>
+                <span style="border-color: rgba(255,255,255,255);padding-left:5px;font-size:14px;color:black; " ></span><span  t-field="doc.partner_id.vat" />
+              </t>
+
+
+        </div>
+      </div>
+  </div>
+        <br/>
+         <table style="width:100%; border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+         <thead>
+              <tr  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>Réference</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>Entrée </center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>Sortie</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>Désignation</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>QTE</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>N°Serie</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>Pièces</center></span></th>
+                  <th class="text-center"  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;"><span><center>opération</center></span></th>
+              </tr>
+       </thead>
+
+       <tbody  style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;" class="sale_tbody">
+
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+            <center>   <span t-esc="doc.name"/> </center>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+            <center>  <span t-esc="doc.date_repair.strftime('%d/%m/%Y')"/> </center>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+            <center><span t-esc="doc.date_end.strftime('%d/%m/%Y')"/> </center>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+          <center>     <span t-esc="doc.product_id.name"/> </center>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+            <center> <span t-esc="'{0:,.0f}'.format(doc.product_qty)"/></center>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+          <center>     <span t-esc="doc.lot_id.name"/> </center>
+            </td>
+
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+              <t t-foreach="doc.operations" t-as="l">
+                    <span style="color:red;"><b>-</b></span> <span t-esc="l.name"/> <span style="color:red;">(<span t-esc="'{0:,.0f}'.format(l.product_uom_qty)"/> pièces) <br/> </span>
+              </t>
+            </td>
+            <td style="border:1px solid black;padding-top:15px;padding-bottom:20px;padding-left:8px;">
+              <t t-foreach="doc.fees_lines" t-as="line">
+            <span style="color:red;"><b>-</b> </span>  <span t-esc="line.name"/>  <span style="color:red;">(<span t-esc="'{0:,.0f}'.format(line.product_uom_qty)"/> pièces) <br/> </span>
+              </t>
+            </td>
+        </tbody>
+     </table>
+
+            </t>
+        </t>
+
+    </template>
+
+
+    </data>
+</odoo>

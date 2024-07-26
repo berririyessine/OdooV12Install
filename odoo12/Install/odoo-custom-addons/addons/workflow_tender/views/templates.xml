@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+<template id="assets_backend" name="QCM physique" inherit_id="web.assets_backend">
+<xpath expr="." position="inside">
+<script type="text/javascript" src="/workflow_tender/static/src/js/qcm_button.js"></script>
+</xpath>
+</template>
+    <!-- additional css -->
+      <template id="assets_backend" name="enova__report css assets" inherit_id="web.assets_backend">
+          <xpath expr="." position="inside">
+              <link rel="stylesheet" href="/workflow_tender/static/src/css/style.css"/>
+          </xpath>
+      </template>
+    <!-- End additional css -->
+</data>
+</odoo>

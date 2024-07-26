@@ -1,0 +1,143 @@
+<odoo>
+    <record id="view_devis_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="prospection_id"/>
+            </xpath>
+            <header position="inside">
+                <button string="QCM d'Evaluation Devis"
+                            context="{'default_prospection_id': prospection_id}"
+                            name="QCM_devis" type="object" class="btn-primary" states="draft"/>
+                <button string="QCM d'Evaluation Devis Envoyé"
+                            context="{'default_prospection_id': prospection_id}"
+                            name="QCM_devis_send" type="object" class="btn-primary" states="sent"/>
+                <button string="QCM d'Evaluation Bn Commande"
+                            context="{'default_prospection_id': prospection_id}"
+                            name="QCM_BnCommande" type="object" class="btn-primary" states="sale"/>
+
+            </header>
+        </field>
+    </record>
+
+
+     <!--      QCM Devis-->
+    <record id="qcm_sale_order_draft_qcm_form_view" model="ir.ui.view">
+        <field name="name">sale.order.draft.qcm.form</field>
+        <field name="model">sale.order.draft.qcm</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+         <!--      QCM Devis Envoyé-->
+    <record id="qcm_sale_order_send_qcm_form_view" model="ir.ui.view">
+        <field name="name">sale.order.send.qcm.form</field>
+        <field name="model">sale.order.send.qcm</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+      <!--      QCM Bn Commande-->
+    <record id="qcm_sale_order_bn_commande_qcm_form_view" model="ir.ui.view">
+        <field name="name">sale.order.bn.cm.qcm.form</field>
+        <field name="model">sale.order.bn.cm.qcm</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+</odoo>

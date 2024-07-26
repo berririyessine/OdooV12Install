@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+
+      <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after" >
+            <button  type="object"  t-if='widget.modelName == "offre.physique"'
+                    class="btn btn-primary btn-sm o_button_help" >QCM
+            </button>
+            <button  type="object"  t-if='widget.modelName == "offre.tuneps"'
+                    class="btn btn-primary btn-sm o_button_help_tuneps" >QCM
+            </button>
+        </t>
+        </t>
+
+</templates>

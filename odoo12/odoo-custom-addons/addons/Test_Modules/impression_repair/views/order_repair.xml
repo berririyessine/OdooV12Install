@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+<report
+        id="order_repair"
+        string="Liste des reparations"
+        model="partner.repair.line"
+        report_type="qweb-pdf"
+        file="impression_repair.repair_list"
+        name="impression_repair.template_repair_list"
+        attachment_use="False"/>
+<template t-name="template_repair_list">
+      <t t-call="web.external_layout">
+        <style>
+            .text-center {
+                text-align : center;
+            }
+            .titre {
+                border : 1px solid black;
+                border-radius : 10px;
+                text-align : center;
+                padding : 10px;
+            }
+            .case {
+                padding: 3px 15px;
+                border : 1px solid black;
+                border-radius : 5px;
+            }
+            .row {
+                margin-top : 10px;
+                margin-bottom : 10px;
+            }
+            span {
+                font-size:18px;
+            }
+        </style>
+        <t t-foreach="docs" t-as="doc">
+
+            <div class="row col-xs-12" style="margin-bottom:100px; margin-top:20px;">
+                <div class="col-xs-3">
+                </div>
+                <div class="col-xs-6 text-center">
+                    <b style=" font-size: 18px!important;">Monastir le </b>
+                </div>
+                <div class="col-xs-3">
+                </div>
+            </div>
+
+        </t>
+    </t>
+    </template>
+    </data>
+</odoo>

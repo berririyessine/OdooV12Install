@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <menuitem id="hr.menu_hr_main" parent="hr.menu_hr_root"
+            name="Human Resources" groups="hr.group_hr_manager" sequence="0" />
+
+        <record id="hr_contract_view_form_paye" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.paye</field>
+            <field name="model">hr.contract</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="hr_payroll.hr_contract_form_inherit" />
+
+            <field name="arch" type="xml">
+                <field name="schedule_pay" position="after">
+                    <field name="nationalite" placeholder="e.g. Tunisienne" />
+                </field>                
+
+                <field name="struct_id" position="after">
+                    <field name="type_salaire" />
+                    <field name="type_avance" />
+                    <field name="qualif" />
+                    <field name="niveau" />
+                    <field name="coef" />
+                </field>
+
+            </field>
+        </record>
+        <!-- hr_contract view inherited --> 
+
+        <record id="hr_contract_view_inherited_prime" model="ir.ui.view">
+            <field name="name">hr.contract.view.inherited</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form" />
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//div[@name='wage']" position="after">
+                        <label for="number_month"/>
+                        <div class="o_row" name="number_month">
+                            <field name="number_month" nolabel="1"/>
+                            <span>  month</span>                           
+                        </div>                      
+                    </xpath>
+                    <xpath expr="//notebook/page[2]"
+                        position="after">
+                        <page string="Les Primes">
+                            <group col="4">
+                                <field name="prime_pr" />
+                                <field name="prime_trspr" />
+                                <field name="prime_excep" string="Prime d'encouragement" />
+                                <field name="prime_risque" string="Prime de respnsabilité" />
+                                <field name="prime_function" />
+                                <field name="prime_aide" string="Prime divers" />
+                                <field name="prime_lait" />
+                                <field name="REINV" string="Réinvestissement" />
+                            </group>
+                        </page>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

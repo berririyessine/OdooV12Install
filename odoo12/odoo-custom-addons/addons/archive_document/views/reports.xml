@@ -1,0 +1,74 @@
+<odoo>
+
+    <report
+        id="report_file"
+        model="muk_dms.file"
+        string="Infos Fichier"
+        name="archive_document.report_file_view"
+        file="archive_document.report_file"
+        report_type="qweb-pdf" />
+
+    <template id="report_file_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+              <div class="col-xs-12" style="padding:0;">
+                    <table style="border-spacing:0;margin-bottom:0;height:122px;" class="table">
+                      <tr>
+                        <td style="border: 2px solid black;width: 2.63in; text-align: center" colspan="2" class="col-xs-8 danger"><h3 t-field="doc.name"/></td>
+                      </tr>
+                      <tr>
+                          <td style="border-left: 2px solid black; border-right: 2px solid black; text-align: center" colspan="2" class="col-xs-8 danger"><span t-field="doc.code"/></td>
+                      </tr>
+                      <tr>
+                        <t t-if="doc.boite_archive">
+                          <td style="border: 2px solid black; text-align: center" colspan="2" class="col-xs-8 danger"><span t-field="doc.boite_archive"/></td>
+                        </t>
+                        <t t-else="">
+                            <td style="border: 2px solid black; text-align: center" colspan="2" class="col-xs-8 danger">Acune boite d'archive</td>
+                        </t>
+                      </tr>
+                    </table>
+                    <br/>
+              </div>
+            </t>
+        </t>
+
+    </template>
+
+
+    <report
+        id="report_file_ticket"
+        model="muk_dms.file"
+        string="Infos Fichier ticket"
+        name="archive_document.report_file_ticket_view"
+        file="archive_document.report_ticket_file"
+        report_type="qweb-pdf" />
+
+    <template id="report_file_ticket_view">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+              <span class="col-xs-4" style="display: inline-block; padding:0;">
+                    <table style="border-spacing:0;margin-bottom:0;height:122px;" class="table">
+                      <tr>
+                        <td style="border: 2px solid black;width: 2.63in; text-align: center" colspan="2" class="col-xs-4 danger"><h3 t-field="doc.name"/></td>
+                      </tr>
+                      <tr>
+                          <td style="border-left: 2px solid black; border-right: 2px solid black; text-align: center" colspan="2" class="col-xs-4 danger"><span t-field="doc.code"/></td>
+                      </tr>
+                      <tr>
+                        <t t-if="doc.boite_archive">
+                          <td style="border: 2px solid black; text-align: center" colspan="2" class="col-xs-4 danger"><span t-field="doc.boite_archive"/></td>
+                        </t>
+                        <t t-else="">
+                            <td style="border: 2px solid black; text-align: center" colspan="2" class="col-xs-4 danger">Acune boite d'archive</td>
+                        </t>
+                      </tr>
+                    </table>
+                    <br/>
+              </span>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>

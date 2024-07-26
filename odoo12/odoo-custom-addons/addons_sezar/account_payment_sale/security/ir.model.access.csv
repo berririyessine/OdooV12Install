@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_payment_sale,payment_sale,model_sale_order_payment,,1,1,1,1
+access_advanced_product_search,advanced_product_search,model_advanced_product_search,,1,1,1,1

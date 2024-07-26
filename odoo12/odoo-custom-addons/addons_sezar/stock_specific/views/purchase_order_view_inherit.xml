@@ -1,0 +1,152 @@
+<odoo>
+    <data>
+    <record id="inherit_purchase_view" model="ir.ui.view">
+        <field name="name">purchase.order.inherit.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+            <button name="get_barcodes" type="object" string="Generate Barre Code" class="oe_highlight" />
+            <button name="get_location" type="object" string="Location Sélectionné" class="oe_highlight" />
+
+        </xpath>
+        <!-- <xpath expr="//field[@name='partner_ref']" position="after">
+            <field name="location_dest_id" string="Emplacement de destination"/>
+            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+             <field name="barcode"/>
+        </xpath> -->
+
+        <xpath expr="//field[@name='order_line']" position="before">
+        <div>
+          Sélectionner Tout
+          <br />
+          <field name="select_all" string="Sélectionner Tout" />
+        </div>
+      </xpath>
+
+        <xpath expr="//field[@name='date_order']" position="after">
+            <field name="calibre" string="Calibre" invisible="1"/>
+            <separator string="Infos.Taux"/>
+            <field name="debit" string="Débit"/>
+            <field name="credit" string="Crédit"/>
+            <separator />
+            <field name="taux" string="Taux"/>
+
+        </xpath>
+        
+        <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+            <field name="calibre" string="Calibre"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+            <field name="selected_location" string=" "/>
+            <field name="barcode" string="Code à Barre"/>
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="after">
+            <button name="get_melange"  type="object" icon="fa-pencil-square-o" />
+        </xpath>
+        <xpath expr="//field[@name='order_line']/tree/field[@name='product_qty']" position="after">
+            <field name="location_desti_id" string="vers"/>
+        </xpath>
+       
+        </field>
+  </record>
+
+  <record id="inherit_stock_picking_view" model="ir.ui.view">
+        <field name="name">stock.picking.inherit.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+        
+        <xpath expr="//field[@name='origin']" position="after">
+            <field name="calibre" string="Calibre"/>
+            <separator string="Infos.Taux"/>
+            <field name="debit" string="Débit"/>
+            <field name="credit" string="Crédit"/>
+            <separator />
+            <field name="taux" string="Taux"/>
+
+        </xpath>
+       
+        </field>
+  </record>
+    <record id="stock_move_line" model="ir.ui.view">
+        <field name="name">move.stock.line.form</field>
+        <field name="model">move.stock.line</field>
+        <field name="arch" type="xml">
+            <form create="0" save="0" edit="0">
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="bn_commande_ref" string='BC'/>
+                         <field name="article_selected" string='ART'/>
+                        </group>
+                        <group>
+                            <field name="stock_move_ids" string="Stock Mélange" >
+                                <tree>
+                                    <field name="date_expected" string='Date prévue' invisible="1"/>
+                                    <field name="date" string='Date'/>
+                                     <field name="origin" string='source'/>
+                                    <field name="product_id" string='Article'/>
+                                    <field name="product_uom" string='unités'/>
+                                    <field name="product_uom_qty" string='qty prévue' invisible="1"/>
+                                    <field name="quantity_done" string="Qty Traité"/>
+                                    <field name="state" string='Etat'/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                        <field name="total" string='Total'/>
+                        </group>
+                    </group>
+
+                </sheet>
+                        <footer>
+                        <button icon="fa-cogs" string="Valider" name="valider" type="object" class="oe_highlight"  />
+                    </footer>
+
+            </form>
+        </field>
+        </record>
+    <record id="stock_move_location" model="ir.ui.view">
+        <field name="name">move.location.form</field>
+        <field name="model">move.location</field>
+        <field name="arch" type="xml">
+            <form create="0" save="0" edit="0">
+                <sheet>
+                    <group>
+                    <group>
+                        <field name="bn_commande_ref" string='BC'/>
+                        </group>
+                        <group>
+                            <field name="location_dest_id" string="Emplacement de destination"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="barcode"/>
+
+                                
+                        </group>
+                        
+                    </group>
+
+                </sheet>
+                        <footer>
+                        <button icon="fa-cogs" string="Valider" name="validerS" type="object" class="oe_highlight"  />
+                    </footer>
+
+            </form>
+        </field>
+        </record>      
+        
+        <record id="stock_move_line_action" model="ir.actions.act_window">
+            <field name="name">move.stock.line</field>
+            <field name="res_model">move.stock.line</field>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="stock_move_line"/>
+        </record>
+
+<delete model="ir.ui.menu" id="purchase.menu_purchase_rfq" />
+
+
+    </data>
+</odoo>

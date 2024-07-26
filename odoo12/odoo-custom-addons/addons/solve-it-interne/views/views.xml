@@ -1,0 +1,107 @@
+<odoo>
+  <data>
+    <!-- <record id="solve-it-base.external_layout_devis_inherit" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-vente.devisconfirmenamedociment" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-base.external_layout_bc_inherit" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-vente.purchaseorderamedociment" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-base.external_layout_bl_inherit" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-vente.addpriceunitrapportbl_notdelivred" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-vente.addpriceunitrapportbl_delivred" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-vente.report_invoice_documen_ttc" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="solve-it-base.external_layout_fac_inherit" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="account.report_invoice_document_with_payments" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record> -->
+    <record id="account.report_invoice_document_with_payments" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="sale_stock.report_invoice_document_inherit_sale_stock" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="sale.report_invoice_document_inherit_sale" model="ir.ui.view">
+            <field name="active" eval="False"/>
+    </record>
+    <record id="l12_tn_timbre.report_invoice_add_timbre" model="ir.ui.view">
+            <field name="active" eval="False"/>
+          </record>
+          <record id="l12_tn_timbre.report_saleorder_document_add_timbre" model="ir.ui.view">
+                  <field name="active" eval="False"/>
+          </record>
+          <record id="sale_management.report_saleorder_document_inherit_sale_management" model="ir.ui.view">
+                  <field name="active" eval="False"/>
+          </record>
+          <record id="sale_stock.report_delivery_document_inherit_sale_stock" model="ir.ui.view">
+                  <field name="active" eval="False"/>
+          </record>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+      <field name="name">base.view.partner.form.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='vat']" position="after">
+          <field name="RIB" string="RIB"/>
+          <field name="fax" string="FAX"/>
+
+
+        </xpath>
+      </field>
+    </record>
+
+
+    <record id="view_order_form_inherit" model="ir.ui.view">
+      <field name="name">sale.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='validity_date']" position="after">
+          <field name="grt" string="Garentie"/>
+          <field name="liv_date" string="Date de livraison"/>
+          <field name="reg_mode" string="Mode de réglement"/>
+
+
+        </xpath>
+      </field>
+    </record>
+
+
+    <!-- <record id="view_company_form_inherit" model="ir.ui.view">
+      <field name="name">res.company.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='rne']" position="after">
+          <field name="RIB" string="RIB Bancaire"/>
+        </xpath>
+      </field>
+    </record> -->
+
+
+    <!-- <record id="solve-it-base.external_layout_devis_inherit" model="ir.ui.view">
+        <field name="active" eval="False"/>
+      </record>
+
+      <record id="solve-it-base.external_layout_bl_inherit" model="ir.ui.view">
+          <field name="active" eval="False"/>
+      </record> -->
+
+  </data>
+</odoo>

@@ -1,0 +1,9 @@
+
+.alert {
+  clear: both;
+}
+
+.carousel-control-next .sr-only {
+  left: 50%;
+}
+

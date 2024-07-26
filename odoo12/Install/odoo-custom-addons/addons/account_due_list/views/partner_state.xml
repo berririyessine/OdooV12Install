@@ -1,0 +1,123 @@
+<odoo>
+  <data>
+    <record id="partner_details_view" model="ir.ui.view" >
+      <field name="name">partner.details.form</field>
+      <field name="model">partner.details</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet string="Détailles Client" >
+
+            <group>
+                <div class="row">
+                  <div class="col">
+                    <span>  De:  </span>
+                  </div>
+                  <div class="col">
+
+                    <span>  A:   </span>
+                  </div>
+
+                </div>
+                <br/>
+
+                <div class="row">
+                  <div class="col">
+                    <field name="date_from"/>
+                  </div>
+                  <div class="col">
+
+                    <field name="date_to"/>
+                  </div>
+
+                </div>
+             </group>
+            <group>
+
+                <group>
+                <field name="partner_ids"  string="Clients" widget="many2many_tags"/>
+
+              </group>
+            </group>
+          </sheet>
+          <footer>
+            <button name="GenererDetails"  string="Générer" type="object" default_focus="1" class="oe_highlight"/>
+
+            <button string="Cancel" class="btn btn-default" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="partner_details_view_action">
+      <field name="name">Détaille Client</field>
+      <field name="res_model">partner.details</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="detaille_partner"
+      name="Détailles Client"
+      parent="account.menu_finance_entries"
+      action="partner_details_view_action"/>
+
+
+<!-- grade client -->
+ <!-- <record id="action_grade_client" model="ir.actions.act_window">
+   <field name="name">Grades Client</field>
+   <field name="res_model">grade.client</field>
+   <field name="view_mode">tree,form</field>
+ </record>
+
+ <menuitem id="menu_grade_client" name="Grades Client"
+   parent="contacts.res_partner_menu_config"
+   action="action_grade_client"
+   sequence="7" />
+
+   <record id='grade_tree' model='ir.ui.view'>
+        <field name="name">grade.client.tree</field>
+        <field name="model">grade.client</field>
+        <field name="arch" type="xml">
+            <tree string="Grades Client" editable="bottom">
+                <field name="grade"/>
+                <field name="niveau"/>
+                <field name="montant" widget="monetary"/>
+            </tree>
+        </field>
+  </record>
+
+
+  <record id = "ir_cron_calcule_chiffre_affaire" model = "ir.cron">
+   <field name = "name">Calcule Chiffre d'affaire</field>
+   <field eval = "True" name = "active" />
+   <field name = "interval_number">1</field>
+   <field name = "interval_type">days</field>
+   <field name = "numbercall">-1</field>
+   <field eval = "True" name = "doall" />
+   <field name = "model_id" ref = "model_res_partner" />
+   <field name = "state">code</field>
+   <field name = "code">model.calc_chiffre_affaire()</field>
+  </record>
+
+
+  <record id="view_res_partner_inherit" model="ir.ui.view">
+      <field name="name">respartner.inherit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='vat']" position="after">
+            <field name="chiffre_affaire" string="Chiffre d'affaire" readonly='1'/>
+          </xpath>
+          <xpath expr="//button[@name='275']" position="before">
+            <button name="" type="object" class="oe_stat_button" icon="fa-line-chart" disabled = '1'>
+
+              <field name="grade" widget="statinfo"/>
+            </button>
+          </xpath>
+      </field>
+  </record> -->
+
+    </data>
+  </odoo>

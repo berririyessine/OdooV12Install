@@ -1,0 +1,42 @@
+<odoo>
+<template t-name="product.report_simple_label">
+ <div class="col-xs-4" style="padding:0;">
+  <center>  <img t-if="product.image_medium" t-att-src="'data:image/png;base64,%s' % to_text(product.image_medium)"  width="100px" height="100px" /> </center>
+            <h3><center>
+            <strong t-field="product.marque"/>
+            </center></h3>
+        <table style="border-spacing:0;margin-bottom:0;height:122px;" class="table">
+            <thead>
+                <tr style="width: 3in;">
+                    <td style="border: 2px solid black;width: 2.63in;" colspan="2" class="col-xs-8 danger">
+                        <t t-if="product.default_code">
+                            [<strong t-field="product.default_code"/>]
+                        </t>
+                      <strong>Modele : </strong>  <span t-field="product.name"/>
+                    </td>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 2px solid black;text-align: left; vertical-align: middle;" class="col-xs-5">
+                        <strong>Capacité : </strong> <span t-field="product.capacite"/> <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 2px solid black;text-align: left; vertical-align: middle;" class="col-xs-5">
+                      <strong>Poids : </strong> <span t-field="product.weight"/> KG  <strong>// Couleur : </strong> <span t-field="product.couleur"/>
+                    </td>
+                </tr>
+                <tr >
+                    <td style="border: 2px solid black;text-align: center; vertical-align: middle;" class="col-xs-5">
+                        <img t-if="product.barcode and len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height:20%;"/>
+                        <img t-elif="product.barcode and len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height:20%;"/>
+                        <img t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', quote_plus(product.barcode or ''), 600, 150)" style="width:100%;height:20%;"/>
+                        <span t-field="product.barcode"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</template>
+</odoo>

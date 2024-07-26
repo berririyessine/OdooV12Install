@@ -1,0 +1,114 @@
+<odoo>
+    <data>
+         <!--Appel D'offre Physique-->
+
+       <record id="appel_offre_physique_tree_view" model="ir.ui.view">
+        <field name="name">offre.physique.tree</field>
+        <field name="model">offre.physique</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="partner_id" string="Client"/>
+                <field name="date_start" string="Date Début"/>
+                <field name="date_end" string="Date Fin"/>
+                <field name="caution" string="Caution"/>
+            </tree>
+        </field>
+        </record>
+        <record id="appel_offre_physique_form_view" model="ir.ui.view">
+        <field name="name">offre.physique.form</field>
+        <field name="model">offre.physique</field>
+        <field name="arch" type="xml">
+            <form>
+                 <header>
+                   <button string="QCM d'Evaluation"
+                           context="{'default_qcm_id': id,'default_prospection_id': prospection_id}"
+                           name="QCM_pyhsique" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"  string="Référence"/>
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="prospection_id" string="Prospection"/>
+                            <field name="partner_id" string="Client"/>
+                        </group>
+                        <group>
+                            <field name="date_start" string="Date Début"/>
+                            <field name="date_end" string="Date Fin"/>
+                        </group>
+                        <group>
+                            <field name="caution" string="Caution"/>
+                            <field name="piece_joint" string="Cahier Des Charges" widget="many2many_binary"/>
+                        </group>
+
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+        </record>
+
+       <record id="workflow_tender.create_offre_physique" model="ir.actions.act_window">
+            <field name="name">Appel d'offre physique</field>
+            <field name="res_model">offre.physique</field>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="appel_offre_physique_form_view"/>
+        </record>
+
+        <!--      QCM OFFRE PHYSIQUE-->
+        <record id="qcm_offre_physique_form_view" model="ir.ui.view">
+        <field name="name">qcm.offre.physique.form</field>
+        <field name="model">qcm.offre.physique</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="qcm_id" string="Offre Physique"/>
+                             <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+        </record>
+        <record id="action_qcm_physique" model="ir.actions.act_window">
+            <field name="name">QCM PHYSIQUE</field>
+            <field name="res_model">qcm.offre.physique</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="qcm_offre_physique_form_view"/>
+
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>

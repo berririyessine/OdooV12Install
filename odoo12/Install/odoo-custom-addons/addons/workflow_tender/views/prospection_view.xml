@@ -1,0 +1,331 @@
+<odoo>
+  <data>
+      <!--      Prospection-->
+      <record id="prospection_search_view" model="ir.ui.view">
+            <field name="name">filtrage.prosection.search</field>
+            <field name="model">prospection</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="stage_code"/>
+                    <filter string="Offre D'appel" name="appel_offre" domain="[('stage_code','=','AO')]" />
+                </search>
+
+            </field>
+      </record>
+      <record id="prospection_tree_view" model="ir.ui.view">
+            <field name="name">prospection.tree</field>
+            <field name="model">prospection</field>
+            <field name="arch" type="xml">
+                <tree string="Prospection">
+                    <field name="date"/>
+                    <field name="name" string="Prospection"/>
+                    <field name="partner_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="prospection_form_view" model="ir.ui.view">
+        <field name="name">prospection.form</field>
+        <field name="model">prospection</field>
+        <field name="arch" type="xml">
+            <form string="Prospection Form">
+                <field name="parution_validate" invisible="1"/>
+                <field name="validate_done" invisible="1"/>
+                <field name="purcent_physique_done" invisible="1"/>
+                <field name="purcent_tuneps_done" invisible="1"/>
+                <field name="stage_code" invisible="1"/>
+               <header>
+                   <field name="stage_id" widget="statusbar" clickable="True"/>
+                   <button string="Appel D'offres"
+                           context="{'default_partner_id': partner_id,'default_prospection_id': id}"
+                           name="paru_state" type="object" class="btn-primary"
+                           attrs="{'invisible':[('parution_validate','!=',True)]}"/>
+                   <button string="Questionnaire Technique" groups="workflow_tender.work_tender_menu_filtre_group"
+                           name="technique_Qcm" type="object" class="btn-primary"
+                           context="{'default_prospection_id': id}"
+                           attrs="{'invisible':['|',('validate_done','!=',False),('stage_code','=','NV')],'readonly':[('purcent_physique_done','!=',False)]}"/>
+                   <button string="Preparation Configuration et Calculs"
+                           name="conf_preparate" type="object" class="btn-primary"
+                           context="{'default_prospection_id': id}"
+                           attrs="{'invisible':[('stage_code','!=','GN')]}"/>
+                   <button string="QCM d'Eval.Prosp"
+                           context="{'default_prospection_id': id}"
+                           name="QCM_prospection" type="object" class="btn-primary"/>
+                   <button string="QCM d'Eval.Etude"
+                           context="{'default_prospection_id': id}"
+                           name="QCM_prospection_etude" type="object" class="btn-primary"/>
+
+
+               </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button" type="object" context="{'default_prospection_id': id}"
+                                name="etude_spec_technique" icon="fa-pencil-square-o" string="Étude Spec Tech">
+                            </button>
+
+                        <button name="act_show_offre_pysique" context="{'default_prospection_id': id}" type="object" class="oe_stat_button" attrs="{'invisible':[('stage_code','=','NV')] }">
+                            <field name="purcent_physique"
+
+                                       string="App.Off Phy" widget="percentpie"/>
+                            </button>
+                        <button name="act_show_offre_tuneps" context="{'default_prospection_id': id}" type="object" class="oe_stat_button" attrs="{'invisible':[('stage_code','=','NV')] }">
+                                <field name="purcent_tuneps"
+                                       string="App.Off Tuneps" widget="percentpie"/>
+                            </button>
+
+
+                        </div>
+                    <div class="oe_title">
+                        <label for="name"  string="Prospection"/>
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" string="Client"/>
+                            <field name="date" string="Date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Etude Détails">
+                            <field name="etude_ids" create="false">
+                                <tree create="false">
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Questionnaire Technique Résumé"
+                        attrs="{'invisible':[('stage_code','=','NV')]}">
+                            <field name="note" />
+                        </page>
+                    </notebook>
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+        </record>
+
+        <record id="view_create_prospection_simple" model="ir.ui.view">
+            <field name="name">prospection.form.simple</field>
+            <field name="model">prospection</field>
+            <field name="arch" type="xml">
+                <form string="Créer une prospection">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="Titre du prospection" placeholder="ex. Appel D'offre"/>
+                                <field name="partner_id" string='Client' domain="[('customer', '=', True)]" context="{'search_default_customer': 1}"/>
+                            </group>
+                        </group>
+
+                        <footer>
+                            <button string="Create" name="close_dialog" type="object" class="btn-primary"/>
+                            <button string="Create &amp; Edit" name="edit_dialog" type="object" class="btn-primary"/>
+                            <button string="Discard" class="btn-default" special="cancel"/>
+                        </footer>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="create_prospection_simple" model="ir.actions.act_window">
+            <field name="name">Créer une prospection</field>
+            <field name="res_model">prospection</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_create_prospection_simple"/>
+            <field name="target">new</field>
+        </record>
+
+        <record id="case_kanban_view_prospection" model="ir.ui.view">
+            <field name="name">prospection.kanban</field>
+            <field name="model">prospection</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="stage_id" class="o_kanban_small_column" on_create="workflow_tender.create_prospection_simple">
+                    <field name="stage_id" options='{"group_by_tooltip": {"requirements": "Description", "legend_priority": "Use of stars"}}'/>
+
+                    <field name="color"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle btn" data-toggle="dropdown" href="#" >
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <t t-if="widget.editable"><li><a type="edit">Edit</a></li></t>
+                                        <t t-if="widget.deletable"><li><a type="delete">Delete</a></li></t>
+                                        <li><ul class="oe_kanban_colorpicker" data-field="color"/></li>
+                                    </ul>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div>
+                                        <strong class="o_kanban_record_title"><field name="name"/></strong>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="prospection_action_by_filter">
+            <field name="name">Prospection</field>
+            <field name="res_model">prospection</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain"></field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('case_kanban_view_prospection')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('prospection_tree_view')})]"/>
+            <field name="view_id" ref="prospection_form_view"/>
+            <field name="context">{"search_default_appel_offre":1}</field>
+        </record>
+        <record model="ir.actions.act_window" id="prospection_action_all">
+            <field name="name">Prospection</field>
+            <field name="res_model">prospection</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain"></field>
+            <field name="view_ids"
+                   eval="[(5, 0, 0),
+                          (0, 0, {'view_mode': 'kanban', 'view_id': ref('case_kanban_view_prospection')}),
+                          (0, 0, {'view_mode': 'tree', 'view_id': ref('prospection_tree_view')})]"/>
+            <field name="view_id" ref="prospection_form_view"/>
+            <field name="context">{}</field>
+        </record>
+      <record id="etude_form_view" model="ir.ui.view">
+        <field name="name">etude.specifique.form</field>
+        <field name="model">etude.specifique</field>
+        <field name="arch" type="xml">
+            <form string="Etude Form" create="false">
+                     <sheet>
+                        <group>
+                            <group>
+                                <field name="name" string="Titre"/>
+                            </group>
+                        </group>
+                         <notebook>
+                             <page string="Détails">
+                                <field name="description"/>
+                                 <field name="prospection_id" invisible="1"/>
+                             </page>
+                         </notebook>
+                     </sheet>
+                 <footer>
+                    <button string="Save &amp; close" name="generer" type="object" class="btn-primary"/>
+                    <button string="Discard" class="btn-default" special="cancel"/>
+                 </footer>
+
+            </form>
+        </field>
+      </record>
+
+        <record id="prospection_type_form_view" model="ir.ui.view">
+        <field name="name">prospection.appel.offre.form</field>
+        <field name="model">prospection.appel.offre</field>
+        <field name="arch" type="xml">
+            <form >
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="type" widget="selection"/>
+                            <field name="partner_id" string="Client"/>
+                        </group>
+                    </group>
+
+                </sheet>
+                <footer>
+                    <button string="Valider"
+                            context="{'default_partner_id': partner_id}"
+                            name="generer_appel" type="object" class="btn-primary"/>
+                    <button string="Annuler" class="btn-default" special="cancel"/>
+                 </footer>
+            </form>
+        </field>
+        </record>
+<!--      QCM Prospection-->
+        <record id="qcm_prospection_form_view" model="ir.ui.view">
+        <field name="name">qcm.prospection.form</field>
+        <field name="model">qcm.prospection</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+                             <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+        </record>
+<!--      QCM Prospection-->
+        <record id="qcm_prospection_etude_form_view" model="ir.ui.view">
+        <field name="name">qcm.prospection.etude.form</field>
+        <field name="model">qcm.prospection.etude</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+                             <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+        </record>
+
+  </data>
+</odoo>

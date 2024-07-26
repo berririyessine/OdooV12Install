@@ -1,0 +1,106 @@
+<odoo>
+    <record id="preparation_config_form_view" model="ir.ui.view">
+        <field name="name">preparation.config.form</field>
+        <field name="model">preparation.config</field>
+        <field name="arch" type="xml">
+            <form string="Preparation et configuration Form">
+                <field name="valider_devis" invisible="1"/>
+                <field name="valider_doc" invisible="1"/>
+                <field name="valider_caution" invisible="1"/>
+                <field name="valider_prix" invisible="1"/>
+                <field name="terminer_proc" invisible="1"/>
+
+                <header>
+                    <field name="state" widget="statusbar"/>
+                    <button string="QCM Prépa"
+                            context="{'default_prospection_id': prospection_id}"
+                            name="QCM_prepa_config" type="object" class="btn-primary"/>
+
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button string="devis" icon="fa-pencil-square-o"
+                                context="{'default_partner_id': partner_id,'default_prospection_id': prospection_id}"
+                                name="devis_add" type="object" class="oe_stat_button"
+                        />
+
+                        <button string="Prep Doc Admin" icon="fa-file"
+                                name="doc_administratif" type="object" class="oe_stat_button"
+                        />
+                        <button string="Demande Caution"  icon="fa-bookmark-o"
+                                name="get_caution" type="object" class="oe_stat_button"
+                        />
+                        <button string="Valider Prix" icon="fa-money"
+                                name="validate_prix" type="object" class="oe_stat_button"
+                        />
+                        <button string="Valid. Dos tech" icon="fa-check"
+                                name="terminate" type="object" class="oe_stat_button"
+                        />
+
+
+                    </div>
+                    <div class="oe_title">
+                        <label for="name"  string="Preparation et configuration"/>
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id" string="Client"/>
+                            <field name="prospection_id" string="Prospection"/>
+                            <field name="date" string="Date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Devis">
+
+                        </page>
+                        <page string="Caution">
+                        </page>
+                    </notebook>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <!--      QCM PrepaCONFIG-->
+    <record id="qcm_prepa_config_form_view" model="ir.ui.view">
+        <field name="name">qcm.prepa.config.form</field>
+        <field name="model">qcm.prepa.config</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+</odoo>

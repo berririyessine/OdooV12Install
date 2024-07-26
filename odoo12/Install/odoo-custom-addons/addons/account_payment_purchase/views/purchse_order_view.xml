@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+<record id="view_purchase_order_form" model="ir.ui.view">
+    <field name="name">account_payment_purchase.purchase_order.form</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_form"/>
+    <field name="arch" type="xml">
+      <header position="inside">
+        <button name="add_payment" class="oe_highlight" string="Enregistrer un paiement" type="object"/>
+        <button name="set_to_draft" class="oe_highlight" string="Modifier BC" type="object" states="purchase"/>
+      </header>
+      <notebook position="inside">
+        <page string="paiement">
+          <field name="payment_ids">
+            <tree>
+              <field name="communication" readonly="1"/>
+              <field name="partner_id"/>
+              <field name="payment_date"/>
+              <field name="amount"/>
+              <field name="journal_id"/>
+            </tree>
+          </field>
+        </page>
+      </notebook>
+        <field name="amount_total" position="after">
+            <field name="resteApayer" class="oe_subtotal_footer_separator oe_inline o_td_label"/>
+        </field>
+
+        <xpath expr="/form/sheet/notebook/page[1]/field[1]" position="before">
+          <button name="find_product" class="oe_highlight" string="recherche avancée" type="object"/>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree/field[@name='product_qty']" position="after">
+          <field name="total_qty_product" string="Qty en Stock"/>
+        </xpath>
+        <xpath expr="/form/sheet/notebook/page[1]/field[1]/tree//field[7]" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+    </field>
+</record>
+
+<record id="view_advanced_search_product_purchase" model="ir.ui.view">
+      <field name="name">advanced.product.searchpurchase</field>
+      <field name="model">advanced.product.search.purchase</field>
+      <field name="arch" type="xml">
+          <form string="Products" create="0" save="0" edit="0">
+              <group colspan="4" >
+                  <separator string="Products" colspan="4"/>
+                  <newline/>
+                  <field name="product_ids" />
+              </group>
+              <footer>
+                  <button icon="fa-cogs" string="Valider" name="Valider" type="object" class="oe_highlight"  />
+              </footer>
+         </form>
+      </field>
+  </record>
+
+</odoo>

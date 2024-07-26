@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    <record id="stock_model" model="ir.ui.view">
+      <field name="name">stock.model.form</field>
+      <field name="model">stock.model</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet string="Stock Location">
+            <group>
+              <div class="row">
+                <div class="col-xs-4">
+                  <span> Emplacement:  </span>
+                </div>
+                </div>
+              <div class="row">
+                <div class="col-xs-4">
+                  <field name="location_3d_id" />
+                </div>
+              </div>
+            </group>
+          </sheet>
+          <footer>
+            <button name="GenerateLocationState" string="Générer Etat Détaillées" type="object" default_focus="1" class="oe_highlight" />
+            <button string="Cancel" class="btn btn-default" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+    <record model="ir.actions.act_window" id="stock_location_action">
+      <field name="name">Stock Location</field>
+      <field name="res_model">stock.model</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">form</field>
+      <field name="target">new</field>
+    </record>
+
+
+    <menuitem id="stock_location_menu" 
+        name="Etat Détaillée" 
+        parent="stock.menu_stock_root" 
+        action="stock_location_action" />
+
+  </data>
+</odoo>

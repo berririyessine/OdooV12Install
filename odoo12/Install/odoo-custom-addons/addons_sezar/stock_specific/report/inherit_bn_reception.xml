@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+  <record id="stock.action_report_delivery" model="ir.actions.report">
+        <field name="name">Bon de réception</field>
+  </record>
+  
+ 
+<template id="stock.report_delivery_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+                <t t-if="partner" name="partner_header">
+                    <t t-set="address">
+                        <div t-esc="partner" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                   </t>
+                </t>
+
+                <div class="page">
+                    <h2>
+                        <span t-field="o.name"/>
+                    </h2>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th t-if="o.origin"><strong>Réf.Bon de Commande</strong></th>
+                                <th name="td_sched_date_h">
+                                    <strong>Date</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td t-if="o.origin">
+                                    <span t-field="o.origin"/>
+                                </td>
+                                <td t-if="o.scheduled_date">
+                                    <span t-field="o.scheduled_date"/>
+                                </td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm mt48" >
+                        <thead>
+                            <tr>
+                                <th><strong>Code à barre</strong></th>
+                                <th><strong>Produit</strong></th>
+                                <th><strong>Emplacements</strong></th>
+                               
+                                <th><strong>Etat</strong></th>
+                                <th><strong>Date limite a commercial</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <t t-foreach="o.move_lines" t-as="move">
+                            <tr >
+                              
+                              <td>
+                                <t t-set="content" t-value="move.product_id.barcode"/>
+                                <img class="barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', content, 150, 50)" alt="Barcode"/>
+
+                                   
+                                </td>
+                                <td>
+                                    <span t-field="move.product_id.name"/>
+                                   
+                                </td>
+                                
+                               <td>
+                                    <span t-field="o.location_dest_id.name"/>
+                                  
+                                </td>
+                                 <td>
+                                    <span t-field="o.location_dest_id.tag_ids"/>
+                                  
+                                </td>
+                                <td>
+                                    -
+                                  
+                                </td>
+                            </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    
+                    <p>
+                        
+                    </p>
+                </div>
+            </t>
+         </t>
+    </template>
+
+    
+  </data>
+</odoo>

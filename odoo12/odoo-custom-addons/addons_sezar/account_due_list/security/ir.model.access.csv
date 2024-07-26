@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_invoice_line,partner_invoice_line,model_partner_invoice_line,,1,1,1,0
+access_partner_invoice_details,partner_invoice_details,model_partner_invoice_details,,1,1,1,0
+access_partner_details,partner_details,model_partner_details,,1,1,1,0
+access_partner_detail_line,partner_detail_line,model_partner_detail_line,,1,1,1,0
+access_partner_details_model,partner_details_model,model_partner_details_model,,1,1,1,0
+access_retenue_type,retenue_type,model_retenue_type,,1,1,1,0
+access_grade_client,Access grade client,model_grade_client,,1,1,1,1

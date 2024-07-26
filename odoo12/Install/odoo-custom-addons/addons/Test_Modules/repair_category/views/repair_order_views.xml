@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_repair_order_tree_inherit" model="ir.ui.view">
+        <field name="name">repair.order.tree.category</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="guarantee_limit" position="after">
+                <field name="category_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_marque_order_tree_inherit" model="ir.ui.view">
+        <field name="name">repair.order.tree.marque</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="before">
+                <field name="marque_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">repair.order.form.category</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+
+        <field name="arch" type="xml">
+            <field name="guarantee_limit" position="after">
+                <field
+                    name="category_id"
+                    options="{'no_quick_create': True}"
+                />
+            </field>
+            <field name="category_id" position="after">
+                <field
+                  name="panne"
+                  />
+            </field>
+            <field name="guarantee_limit" position="after">
+                <field
+                  name="date_end"
+                />
+            </field>
+
+            <field name="lot_id" position="after">
+                <field
+                  name="marque_id"
+                />
+            </field>
+
+            <field name="user_id" position="attributes">
+                    <attribute name="string">Technicien</attribute>
+            </field>
+
+            <field name="invoice_method" position="attributes">
+                    <attribute name="string">Mode d'encaissement</attribute>
+            </field>
+
+            <!-- <field name="date_repair" position="attributes">
+                    <attribute name="string">Date entrée</attribute>
+            </field> -->
+
+        </field>
+
+
+    </record>
+
+
+
+    <record id="view_repair_order_form_filter_inherit" model="ir.ui.view">
+        <field name="name">repair.order.search.category</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form_filter"/>
+        <field name="arch" type="xml">
+            <field name="state" position="after">
+                <field name="category_id"/>
+            </field>
+            <filter name="guarantee_limit" position="after">
+                <filter
+                    string="Category"
+                    name="category"
+                    domain="[]"
+                    context="{'group_by':'category_id'}"
+                />
+            </filter>
+        </field>
+    </record>
+
+    <!-- <record id="view_repair_order_form_inherit" model="ir.ui.view">
+        <field name="name">repair.order.form.category</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+
+        <field name="arch" type="xml">
+
+
+            </field>
+    </record> -->
+
+
+
+    <record id="print_repair_view" model="ir.ui.view" >
+      <field name="name">repair.order.form</field>
+      <field name="model">repair.order</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet string="Détailles Client" >
+
+            <group>
+                <div class="row">
+                  <div class="col">
+                    <span>  De:  </span>
+                  </div>
+                  <div class="col">
+
+                    <span>  A:   </span>
+                  </div>
+
+                </div>
+                <br/>
+
+                <div class="row">
+                  <div class="col">
+                    <!-- <field name="partner_ids"/> -->
+                  </div>
+                  <div class="col">
+
+                    <!-- <field name="repair_ids"/> -->
+                  </div>
+
+                </div>
+             </group>
+
+          </sheet>
+          <footer>
+            <button name="GenererDetails"  string="Générer" type="object" default_focus="1" class="oe_highlight"/>
+
+            <button string="Cancel" class="btn btn-default" special="cancel" />
+          </footer>
+        </form>
+      </field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Retenue Type-->
+    <record id="retenue_type_1" model="retenue.type">
+        <field name="name">Honoraires, commissions, courtages,
+            vacations et loyers</field>
+    </record>
+    <record id="retenue_type_2" model="retenue.type">
+        <field name="name">Marché</field>
+    </record>
+    <record id="retenue_type_3" model="retenue.type">
+        <field name="name">Redevances</field>
+    </record>
+    <record id="retenue_type_4" model="retenue.type">
+        <field name="name">Revenus des comptes spéciaux d'épargne
+            ouverts auprès des banques</field>
+    </record>
+    <record id="retenue_type_5" model="retenue.type">
+        <field name="name">Revenus des capitaux mobiliers</field>
+    </record>
+    <record id="retenue_type_6" model="retenue.type">
+        <field name="name">Revenus des bons de caisse au porteur</field>
+    </record>
+</odoo>

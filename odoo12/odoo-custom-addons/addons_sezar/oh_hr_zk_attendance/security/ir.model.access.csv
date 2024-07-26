@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_zk_machine_user,zk.machine.hr_biometric_machine,model_zk_machine,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_hr_zk_machine_user1,zk.machine.hr_biometric_machine1,model_zk_machine_attendance,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_hr_zk_machine_user2,zk.machine.hr_biometric_machine2,model_zk_report_daily_attendance,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_hr_attendance,zk.hr_attendance_etat,model_hr_attendance_etat,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_wizard_txt_report,wizard_txt_report,model_wizard_txt_report,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_hr_attendance_etat_model,hr_attendance_etat_model,model_hr_attendance_etat_model,hr_attendance.group_hr_attendance_user,1,1,1,1
+access_hr_attendance_etat_line,hr_attendance_etat_line,model_hr_attendance_etat_line,hr_attendance.group_hr_attendance_user,1,1,1,1

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<odoo>
+  <data>
+
+    <report
+             id="hr_attendance_etat_journal"
+             string="Etat Présence"
+             model="hr.attendance.etat.model"
+             report_type="qweb-pdf"
+             file="oh_hr_zk_attendance.hr_attendance_etat_journal"
+             name="oh_hr_zk_attendance.hr_attendance_etat_template"
+             attachment_use="False"/>
+
+
+  <template id="hr_attendance_etat_template">
+       <t t-call="web.html_container">
+         <t t-call="web.external_layout">
+           <t t-foreach="docs" t-as="doc">
+             <div class="page">
+               <style>
+                 .text-center{
+                 text-align:center!important;
+                 }
+                 hr {
+                 border-top: 2px solid black;
+                 width :100%;
+                 padding-right : 100%;
+                 }
+                 .titles{
+                 color:black!important;
+                 font-size : 14px;
+                 font-weight : bold;
+                 }
+
+                 table, th, td{
+                 border : 1px solid black;
+                 padding : 5px;
+                 }
+                 td{
+                 padding:5 px!important;
+                 }
+               </style>
+               <br/>
+                 <div class="row">
+                   <center> <h3>POINTAGE DE <t t-esc="doc.date_from"/> A <t t-esc="doc.date_to"/></h3></center>
+                 </div>
+
+               <div class="row mt32">
+                 <table width="100%">
+                         <thead>
+                           <tr>
+                               <th class="titles text-center">
+                                 Employé
+                               </th>
+
+                               <th class="titles text-center">
+                                 Date Pointage
+                               </th>
+                                <th class="titles text-center">
+                                 Heure d'entrée
+                               </th>
+                               <th class="titles text-center">
+                                 Heure de sortie
+                               </th>
+
+                               <!-- <th class="titles text-center">
+                                 Heures d'abcence
+                               </th>
+                               <th class="titles text-center">
+                                 Heures Suplimentaire
+                               </th> -->
+                               <th class="titles text-center">
+                                 Heures Travaillés
+                               </th>
+                               <th class="titles text-center">
+                                 Jours Travaillés
+                               </th>
+                             </tr>
+                         </thead>
+
+                         <tbody>
+                           <t t-set="hr_sup" t-value="0.0"/>
+                           <t t-set="hr_abs" t-value="0.0"/>
+                           <t t-set="hr_trav" t-value="0.0"/>
+                            <t t-set="jour_travil" t-value="0.0"/>
+                           <t t-foreach="doc.precences_ids" t-as="line">
+                             <t t-set="hr_sup" t-value="0.0"/>
+                             <t t-set="hr_abs" t-value="0.0"/>
+                             <t t-set="hr_trav" t-value="0.0"/>
+                             <t t-set="jour_travil" t-value="0.0"/>
+                             <t t-foreach="line.attendance_ids" t-as="l">
+                              <tr>
+                                 <td class="text-center">
+                                   <t t-esc="l.employee_id.name"/>
+                                 </td>
+                                 <td class="text-center">
+                                   <t t-esc="l.date"/>
+                                 </td>
+                                 <td class="text-center">
+                                   <t t-esc="l.time_in"/>
+                                 </td>
+                                 <td class="text-center">
+                                   <t t-esc="l.time_out"/>
+                                 </td>
+
+                                 <!-- <td class="text-center">
+                                    <t t-esc="l.heures_absences"/>
+                                    <t t-set="hr_abs" t-value="hr_abs+l.heures_absences"/>
+                                 </td>
+                                 <td class="text-center">
+                                   <t t-esc="l.sup_hours"/>
+                                   <t t-set="hr_sup" t-value="hr_sup+l.sup_hours"/>
+                                 </td> -->
+
+
+
+                                 <td class="text-center">
+                                   <t t-esc="l.heures_travil"/>
+                                   <t t-set="hr_trav" t-value="hr_trav+l.heures_travil"/>
+                                 </td>
+                                 <td class="text-center">
+                                   <t t-esc="l.jour_travil"/>
+                                   <t t-set="jour_travil" t-value="jour_travil+l.jour_travil"/>
+                                 </td>
+                               </tr>
+
+
+                              </t>
+                              <tr class="total">
+                                   <!-- <td class=" titles  text-right" colspan="5">Total Abcences: <t t-esc="hr_abs"/> Heures</td>
+                                   <td class=" titles  text-right">Total Heures Sup: <t t-esc="hr_sup"/> Heures</td> -->
+                                   <td class=" titles  text-center"  colspan="5">Total Heures Trav: <t t-esc="hr_trav"/>  Heures </td>
+                                    <td class=" titles  text-center">Total Jours Trav: <t t-esc="jour_travil"/>  </td>
+                              </tr>
+                              </t>
+                           </tbody>
+                   </table>
+               </div>
+            </div>
+           </t>
+         </t>
+       </t>
+     </template>
+   </data>
+</odoo>

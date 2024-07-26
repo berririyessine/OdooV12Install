@@ -1,0 +1,121 @@
+<odoo>
+  <data>
+
+  <record id="document_view_form_inherit" model="ir.ui.view">
+  <field name="name">muk_dms.file.form.inherit</field>
+  <field name="model">muk_dms.file</field>
+  <field name="inherit_id" ref="muk_dms.view_dms_file_form"/>
+  <field name="arch" type="xml">
+    <xpath expr="//field[@name='storage']" position="after">
+      <field name="date_document" />
+      <field name="date_legal" />
+      <field name="boite_archive" options="{'create': True, 'create_edit': True}" />
+      <field name="code" readonly="1" force_save="1"/>
+      <field name="codeS"  invisible="0"/>
+      <field name="source" options="{'create': True, 'create_edit': True}" />
+    </xpath>
+
+    <xpath expr="//form/sheet/group[2]/group[1]" position="after">
+      <group>
+      <field name="decharge"/>
+      <field name="employee" attrs="{'invisible':[('decharge','==',False)]}"/>
+      <field name="date_decharge" attrs="{'invisible':[('decharge','==',False)]}"/>
+      <field name="text_decharge" attrs="{'invisible':[('decharge','==',False)]}"/>
+    </group>
+    </xpath>
+
+    <xpath expr="//form/sheet" position="after">
+
+    <div class="oe_chatter">
+    <field name="message_follower_ids" widget="mail_followers"/>
+    <field name="activity_ids" widget="mail_activity"/>
+    <field name="message_ids" widget="mail_thread"/>
+    </div>
+
+    </xpath>
+  </field>
+</record>
+------------------
+<record id="document_kanban_view_inherit" model="ir.ui.view" >
+    <field name="name">muk_dms_file.kanban</field>
+        <field name="model">muk_dms.file</field>
+    <field name="inherit_id" ref="muk_dms.view_dms_file_kanban"/>
+    <field name="arch" type="xml">
+      <xpath expr='/kanban[@class="mk_file_kanban_view o_kanban_small_column align-content-start"]/templates/t[@t-name="kanban-box"]/div[@t-attf-class="#{kanban_color(record.color.raw_value)} oe_kanban_global_click"]/div[2]/div[2]/div[@class="o_kanban_details_wrapper"]/div[3]/div[1]/field[@name="write_date"]' position="replace">
+        <field name="date_document" />
+      <b>Boite : </b>  <field name="boite_archive" />
+        </xpath>
+    </field>
+</record>
+
+----------------
+
+ <!-- config boite d'archive -->
+  <record id="action_dms_archive" model="ir.actions.act_window">
+  	<field name="name">Archives</field>
+  	<field name="res_model">boite.archive</field>
+  	<field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_dms_archive" name="Archives"
+  	parent="muk_dms.cat_menu_muk_dms_config_system"
+  	action="action_dms_archive"
+  	sequence="5" />
+
+    <record id='archive_tree' model='ir.ui.view'>
+         <field name="name">boite.archive.tree</field>
+         <field name="model">boite.archive</field>
+         <field name="arch" type="xml">
+             <tree string="Boite d'archive" editable="bottom">
+                 <field name="name"/>
+                 <field name="abrv"/>
+                 <field name="arch_seq"/>
+             </tree>
+         </field>
+   </record>
+
+<!-- config source document -->
+   <record id="action_dms_source" model="ir.actions.act_window">
+    <field name="name">Sources Document</field>
+    <field name="res_model">source.file</field>
+    <field name="view_mode">tree,form</field>
+   </record>
+
+   <menuitem id="menu_dms_source" name="Sources Document"
+    parent="muk_dms.cat_menu_muk_dms_config_system"
+    action="action_dms_source"
+    sequence="5" />
+
+     <record id='source_tree' model='ir.ui.view'>
+          <field name="name">source.file.tree</field>
+          <field name="model">source.file</field>
+          <field name="arch" type="xml">
+              <tree string="Sources Document" editable="bottom">
+                  <field name="name"/>
+              </tree>
+          </field>
+    </record>
+
+<!-- sequences -->
+  <record id="sequence_archive" model="ir.sequence">
+     <field name="name">archive</field>
+     <field name="code">boite.archive</field>
+     <field name="active">TRUE</field>
+     <field name="prefix">BA</field>
+     <field name="padding">6</field>
+     <field name="number_next">1</field>
+     <field name="number_increment">1</field>
+  </record>
+
+  <!-- <record id="sequence_file" model="ir.sequence">
+     <field name="name">file</field>
+     <field name="code">muk_dms.file</field>
+     <field name="active">TRUE</field>
+     <field name="prefix"></field>
+     <field name="padding">6</field>
+     <field name="number_next">1</field>
+     <field name="number_increment">1</field>
+  </record> -->
+
+  </data>
+</odoo>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report
+         id="etat_stock_emplacement"
+         string="Etat Emplacement"
+         model="stock.location.model"
+         report_type="qweb-pdf"
+         file="stock_specific.etat_stock_emplacement"
+         name="stock_specific.template_stock_emplacement"
+         attachment_use="False"/>
+
+
+         <template id="stock_specific.template_stock_emplacement">
+       
+       <t t-call="web.html_container">
+        <t t-call="web.internal_layout">
+
+        <t t-foreach="docs" t-as="doc">
+          <div class="page">
+
+              <div class="row mt32">
+                <table class="table table-sm o_main_table">
+                  <thead>
+                    <tr>
+
+                      <th>
+                        N° ordre
+                      </th>
+                      <th>
+                          Article
+                      </th>
+                      <th>
+                          Code à barre
+                      </th>
+
+                      <th>
+                        Emplacement
+                      </th>
+                      <th>calibre</th>
+                      <th>Fournisseur</th>
+                      <th>Date </th>
+
+                      <th >
+                        Quantité
+                      </th>
+                      
+                      </tr>
+                      
+                  </thead>
+                  <tbody>
+                   <t t-set="i" t-value="0"/>
+                    <t t-foreach="doc.saisie_ids" t-as="l">
+                          <tr>
+                            <td  >
+                              <span t-esc="i"/>
+                            </td>
+                            <t t-set="i" t-value="i+1"/>
+                            <td >
+                              <span t-esc="l.product_id.name"/>
+                             
+                            </td>
+                            <td>
+                                <t t-set="content" t-value="l.product_id.barcode"/>
+                                <img class="barcode" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=1' % ('Code128', content, 150, 50)" alt="Barcode"/>
+
+                             </td>
+                            <td >
+                              <span t-esc="doc.name"/> 
+                            </td>
+                             <td >
+                              <span t-esc="l.calibre"/> 
+                            </td>
+                             <td >
+                              <span t-esc="l.partner_id.name"/>
+                            </td>
+                             <td >
+                              <span t-esc="l.date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                            </td>
+                            <td >
+                              <span t-esc="l.qty"/> 
+                            </td>
+                            </tr>
+                           
+                      </t>
+                      
+                   
+                    </tbody>
+                  </table>
+                </div>
+              
+              
+              
+
+        </div>
+      </t></t>
+    </t>
+  </template>
+</data>
+</odoo>

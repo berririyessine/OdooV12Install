@@ -1,0 +1,61 @@
+<odoo>
+    <record id="view_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="prospection_id"/>
+            </xpath>
+            <header position="inside">
+                <button string="QCM d'Evaluation Facture"
+                            context="{'default_prospection_id': prospection_id}"
+                            name="QCM_facture" type="object" class="btn-primary" />
+
+
+            </header>
+        </field>
+    </record>
+
+
+     <!--      QCM Facture-->
+    <record id="qcm_facture_qcm_form_view" model="ir.ui.view">
+        <field name="name">account.invoice.draft.qcm.qcm.form</field>
+        <field name="model">account.invoice.draft.qcm</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+
+                            <field name="q1" string="1-la tache est désigner au service spécialisée"/>
+                            <field name="q2" string="2-consultation de contenu reçu"/>
+                        </group>
+                        <group>
+                            <field name="q3" string="3-ajustemet et update de contenu et tache demander"/>
+                            <field name="q4" string="4-Tache Fini avec Succès"/>
+                        </group>
+                        <group>
+                            <field name="comment" string="Ajouter Commentaire"/>
+                        </group>
+
+                    </group>
+                    <footer>
+                        <button string="Valider" name="Valider" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+</odoo>

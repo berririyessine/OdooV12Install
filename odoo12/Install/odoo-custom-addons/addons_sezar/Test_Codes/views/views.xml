@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+
+    <record id="ducument_inherit" model="ir.ui.view">
+         <field name="name">muk_dms.file.inherit.form</field>
+         <field name="model">muk_dms.file</field>
+         <field name="inherit_id" ref="	muk_dms.view_dms_file_form"/>
+         <field name="arch" type="xml">
+             <xpath expr="//field[@name='storage']" position="before">
+             <field name="code" string="Code Document"/>
+            <!-- <field name="next_number" string="Nombre Suivant"/> -->
+             </xpath>
+         </field>
+     </record>
+
+    <menuitem name="Test Codes"  id="Test_Codes.menu_root" web_icon="Test_Codes,static/description/icon.png"  />
+  </data>
+</odoo>

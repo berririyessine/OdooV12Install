@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+      <record id="sale_payment_view_tree" model="ir.ui.view">
+           <field name="name">sale.order.payment.tree</field>
+           <field name="model">sale.order.payment</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <tree string="Paiment">
+                   <field name="sale_order_id" readonly="1"/>
+                   <field name="partner_id"/>
+                   <field name="memo"/>
+                   <field name="payment_date"/>
+                   <field name="amount"/>
+                   <field name="journal_id"/>
+
+               </tree>
+           </field>
+       </record>
+
+      <record id="sale_payment_view" model="ir.ui.view">
+           <field name="name">sale.order.payment.form</field>
+           <field name="model">sale.order.payment</field>
+           <field name="type">form</field>
+           <field name="arch" type="xml">
+               <form string="Paiment" create="0" save="0" edit="0">
+                   <sheet >
+                       <group string="Paiement">
+                           <field name="sale_order_id" readonly="1"/>
+                           <field name="partner_id"/>
+                           <field name="memo"/>
+                           <field name="payment_date"/>
+                           <field name="amount"/>
+                           <field name="journal_id"/>
+                       </group>
+                       <group>
+                          <field name="check_bool" invisible="1"/>
+                          <field name="num" string="Num chèque" attrs="{'invisible': [('check_bool', '!=', True)]}"/>
+                          <field name="date" string="Date du chèque" attrs="{'invisible': [('check_bool', '!=', True)]}"/>
+                          <field name="banq" string="Banque" attrs="{'invisible': [('check_bool', '!=', True)]}"/>
+                       </group>
+
+                   </sheet>
+                   <footer>
+                        <button icon="fa-cogs" string="Valider" name="post_payment" type="object" class="oe_highlight"  />
+                    </footer>
+
+               </form>
+           </field>
+       </record>
+
+     </data>
+     </odoo>

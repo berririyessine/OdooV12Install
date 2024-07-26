@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="view_mutante_form" model="ir.ui.view">
+			<field name="name">res.partner.form.inherit</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//group[@name='fiscal_information']" position="inside">
+					<field name="retenue_ala_source"/>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>	

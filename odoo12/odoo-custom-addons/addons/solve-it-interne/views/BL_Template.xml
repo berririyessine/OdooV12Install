@@ -1,0 +1,297 @@
+<odoo>
+<template t-name="stock.report_delivery_document">
+        <t t-call="web.html_container">
+            <!-- <t t-call="web.external_layout"> -->
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <div >
+                    <div class="oe_structure"/>
+                <div class="page">
+                  <div class="row" style="padding-left:19px;">
+                    <div class="col-xs-6" style="margin-right:10px;">
+                      <div class="row" style="padding-bottom:65px;padding-top:43">
+                        <!-- insertion logo -->
+                        <center>  <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"  width="400px" height="150px" /> </center>
+                        </div>
+                        <div class="row">
+                          <h4> <strong>  BON DE LIVRAISON N° : <span t-esc="datetime.datetime.strptime(o.scheduled_date, '%Y-%m-%d %H:%M:%S').strftime('%Y')"/>/<span t-esc="o.name[7:]"/></strong></h4>
+                          <strong>Date  : <span t-esc="datetime.datetime.strptime(o.scheduled_date, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')"/> </strong>
+                      </div>
+                </div>
+                  <div class="col-xs-6" style="width:47%;">
+                    <br/><br/><br/>
+                    <div class="row" style="border:1px solid black;padding:8px;">
+                    <p style="text-decoration: underline;">EXPEDITEUR :</p>
+                      <b> <span t-field="o.company_id.name"/> </b>
+                      <table>
+                    <tr t-if="o.company_id.vat">
+                      <td> M.F</td>
+                       <td style="padding-left:10px;padding-right:10px;">:  </td>
+
+                       <td> <span t-esc="o.company_id.vat"/></td>
+                     </tr>
+                     <tr t-if="o.company_id.rne">
+                      <td> R.C</td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                      <td> <span t-esc="o.company_id.rne"/></td>
+                    </tr>
+                    <tr t-if="o.company_id.street">
+                    <td> ADRESSE </td>
+                    <td style="padding-left:10px;padding-right:10px;">:  </td>
+                     <td> <span t-esc="o.company_id.street"/></td>
+                  </tr>
+                    <tr t-if="o.company_id.phone">
+                      <td> Téléphone </td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                       <td> <span t-esc="o.company_id.phone"/></td>
+                    </tr>
+                    <tr t-if="o.company_id.email">
+                        <td> Courriel </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.company_id.email"/></td>
+                      </tr>
+                      <tr t-if="o.company_id.website">
+                      <td> Site </td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                       <td> <span t-esc="o.company_id.website"/></td>
+                    </tr>
+                      </table>
+                    </div>
+                    <div style="margin:3px;"/>
+
+                  <div class="row" style="border:1px solid black;;padding:8px;">
+                    <p style="text-decoration: underline;">DESTINATAIRE FINAL :</p>
+                      <b> <span t-field="o.partner_id.name"/> </b>
+                    <table>
+                      <tr t-if="o.partner_id.street">
+                        <td> ADRESSE </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.street"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.phone">
+                        <td> Téléphone </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.phone"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.email">
+                        <td> Email </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.email"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.vat">
+                        <td> MF </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.vat" /></td>
+                      </tr>
+
+                    </table>
+                  </div>
+                  </div>
+                  </div>
+
+                  <div class="row" style="padding-left:19px;">
+                    <div class="col-xs-6" style="margin-right:10px;">
+                      <div class="row" style="padding-bottom:65px;padding-top:43">
+                        <!-- insertion logo -->
+                        <center>  <img t-if="o.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(o.company_id.logo)"  width="400px" height="150px" /> </center>
+                        </div>
+                        <div class="row">
+                          <h4> <strong>  BON DE LIVRAISON N° : <span t-esc="datetime.datetime.strptime(o.scheduled_date, '%Y-%m-%d %H:%M:%S').strftime('%Y')"/>/<span t-esc="o.name[7:]"/></strong></h4>
+                          <strong>Date  : <span t-esc="datetime.datetime.strptime(o.scheduled_date, '%Y-%m-%d %H:%M:%S').strftime('%d/%m/%Y')"/> </strong>
+                      </div>
+                </div>
+                  <div class="col-xs-6" style="width:47%;">
+                    <br/><br/><br/>
+                    <div class="row" style="border:1px solid black;padding:8px;">
+                    <p style="text-decoration: underline;">EXPEDITEUR :</p>
+                      <b> <span t-field="o.company_id.name"/> </b>
+                      <table>
+                    <tr t-if="o.company_id.vat">
+                      <td> M.F</td>
+                       <td style="padding-left:10px;padding-right:10px;">:  </td>
+
+                       <td> <span t-esc="o.company_id.vat"/></td>
+                     </tr>
+                     <tr t-if="o.company_id.rne">
+                      <td> R.C</td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                      <td> <span t-esc="o.company_id.rne"/></td>
+                    </tr>
+                    <tr t-if="o.company_id.street">
+                    <td> ADRESSE </td>
+                    <td style="padding-left:10px;padding-right:10px;">:  </td>
+                     <td> <span t-esc="o.company_id.street"/></td>
+                  </tr>
+                    <tr t-if="o.company_id.phone">
+                      <td> Téléphone </td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                       <td> <span t-esc="o.company_id.phone"/></td>
+                    </tr>
+                    <tr t-if="o.company_id.email">
+                        <td> Courriel </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.company_id.email"/></td>
+                      </tr>
+                      <tr t-if="o.company_id.website">
+                      <td> Site </td>
+                      <td style="padding-left:10px;padding-right:10px;">:  </td>
+                       <td> <span t-esc="o.company_id.website"/></td>
+                    </tr>
+                      </table>
+                    </div>
+                    <div style="margin:3px;"/>
+
+                  <div class="row" style="border:1px solid black;;padding:8px;">
+                    <p style="text-decoration: underline;">DESTINATAIRE FINAL :</p>
+                      <b> <span t-field="o.partner_id.name"/> </b>
+                    <table>
+                      <tr t-if="o.partner_id.street">
+                        <td> ADRESSE </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.street"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.phone">
+                        <td> Téléphone </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.phone"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.email">
+                        <td> Email </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.email"/></td>
+                      </tr>
+                      <tr t-if="o.partner_id.vat">
+                        <td> MF </td>
+                        <td style="padding-left:10px;padding-right:10px;">:  </td>
+                         <td> <span t-esc="o.partner_id.vat" /></td>
+                      </tr>
+
+                    </table>
+                  </div>
+                  </div>
+                  </div>
+  <!-- <span t-field="move_line.product_id"/>
+  <span t-field="move_line.product_id.sudo().description_pickingout"/>
+  <span t-field="move_line.product_id.sudo().description_pickingin"/>
+  <span t-field="move_line.lot_id"/>
+  <span t-field="move_line.lot_name"/>
+  <span t-field="move_line.product_qty"/>
+  <span t-field="move_line.qty_done"/>
+    <span t-field="move_line.product_uom_id"/> -->
+
+                    <div class="row" name="customer_address">
+                        <div class="col-xs-4 pull-right">
+                            <!-- <div>
+                                <span><strong>Customer Address:</strong></span>
+                            </div> -->
+
+                            <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
+                            <div t-if="partner" name="partner_header">
+                                <!-- <div t-esc="partner" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/> -->
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid black; text-align:center;"><strong>Référence</strong></th>
+                                <th style="border:1px solid black; text-align:center;"><strong>Désignation</strong></th>
+                                <th style="border:1px solid black; text-align:center;"><strong>Qté</strong></th>
+                                <th style="border:1px solid black; text-align:center;"><strong>Px unitaire</strong></th>
+                                <th style="border:1px solid black; text-align:center;"><strong>Montant HT</strong></th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody class="invoice_tbody" style="border:1px solid black;">
+                          <t t-set="lines" t-value="o.move_lines.filtered(lambda x: x.product_uom_qty)"/>
+                          <tr t-foreach="lines" t-as="move">
+
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;">
+                                    <span t-field="move.product_id.default_code"/>
+                                </td>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;">
+                                  <span t-field="move.product_id.name"/>
+                                </td>
+                                <td class="text-right" style="border:0px!important;border-left:1px solid black!important; text-align:center;">
+                                    <span t-field="move.product_uom_qty"/>
+                                </td>
+                                <td class="text-right" style="border:0px!important;border-left:1px solid black!important; text-align:center;">
+                                  <span t-esc="move.unit_price"/>
+
+                                    <!-- <span t-field="move.price_unit"/>
+                                    <span t-field="l.product_qty"/>
+                                    <span t-field="l.product_uom.name" groups="product.group_uom"/> -->
+                                </td>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;">
+                                    <span t-esc="move.unit_price*move.product_uom_qty"/>
+                               </td>
+
+                            </tr>
+                            <tr t-foreach="range(max(5-len(o.move_lines),0))" t-as="l">
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;" t-translation="off">&amp;nbsp;</td>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;"/>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;"/>
+
+                                <td t-if="display_discount" style="border:0px!important;border-left:1px solid black!important; text-align:center;"/>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;"/>
+                                <td style="border:0px!important;border-left:1px solid black!important; text-align:center;"/>
+
+                            </tr>
+                        </tbody>
+                        <thead>
+                        <tr style="border:1px solid black;">
+                          <td colspan="3" style="border:1px!important;border-left:1px solid black!important;"><br/>  </td>
+                         <td style="border:1px!important;border-left:1px solid black!important; text-align:right;">
+                           TOTAL HT <br/>
+                           TOTAL TVA 19% <br/>
+                           TOTAL TTC <br/>
+
+                        </td>
+                        <td style="border:1px!important;border-left:1px solid black!important;text-align:right;">
+                          <span t-esc="o.total_ht" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/><br/>
+                          <span t-esc="o.total_tva" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/><br/>
+                          <span t-esc="o.total_ttc" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/><br/>
+
+                       </td>
+                     </tr>
+                     <tr>
+                     </tr>
+                   </thead>
+                    </table>
+
+
+
+                    <!-- <p t-if="o.backorder_id">
+                        This shipment is a backorder of <t t-esc="o.backorder_id.name"/>.
+                    </p> -->
+                    <p>
+                        <!-- <t t-if="o.search([('backorder_id', '=', o.id), ('state', 'not in', ['cancel', 'done'])])">
+                            All items couldn't be shipped, the remaining ones will be shipped as soon as they become available.
+                        </t> -->
+                    </p>
+                </div>
+                       </div>
+                       <div class="footer">
+                         <div class="text-center" style="border-top: 1px solid Gainsboro;">
+                                 <ul class="list-inline" name="financial_infos">
+                                   <br/>
+                                  <center>  <span  t-field="o.company_id.name" /> </center>
+                                  <br/>
+                                     <li><center> TÈl : <span  t-field="o.company_id.phone" /> -
+                                     RIB :
+                                     <span  t-field="o.company_id.RIB" />
+                                      - E-mail : <span  t-field="o.company_id.email" /></center></li>
+                                 </ul>
+
+                             </div>
+
+
+
+
+                 </div>
+
+            </t>
+
+    </template>
+  </odoo>

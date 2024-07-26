@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="prospection.stage" id="stage_pros1">
+        <field name="name">Nouveau</field>
+        <field name="on_change">1</field>
+        <field name="sequence">1</field>
+        <field name="code">NV</field>
+    </record>
+    <record model="prospection.stage" id="stage_pros3">
+        <field name="name">Appel D'offres</field>
+        <field name="on_change">1</field>
+        <field name="sequence">2</field>
+        <field name="code">AO</field>
+    </record>
+    <record model="prospection.stage" id="stage_pros4">
+        <field name="name">Gagné</field>
+        <field name="on_change">1</field>
+        <field name="sequence">3</field>
+         <field name="code">GN</field>
+    </record>
+    <record model="prospection.stage" id="stage_pros5">
+        <field name="name">Pérdu</field>
+        <field name="on_change">1</field>
+        <field name="sequence">4</field>
+         <field name="code">PR</field>
+    </record>
+    <record model="prospection.type" id="stage_prosphysique">
+        <field name="name">Appel d'offre Pyhsique</field>
+    </record>
+    <record model="prospection.type" id="stage_tuneps">
+        <field name="name">Appel d'offre Tuneps</field>
+    </record>
+</odoo>

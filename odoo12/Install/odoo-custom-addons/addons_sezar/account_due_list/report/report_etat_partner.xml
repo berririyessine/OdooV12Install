@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <report
+      id="rapport_etat_client"
+      string="Détailles Client"
+      model="partner.details.model"
+      report_type="qweb-pdf"
+      file="account_due_list.rapport_etat_client"
+      name="account_due_list.template_detail_client"
+      attachment_use="False"/>
+
+
+      <template id="account_due_list.template_detail_client">
+        <t t-call="web.html_container">
+          <t t-call="web.external_layout">
+
+            <t t-foreach="docs" t-as="doc">
+              <div class="page">
+                <style>
+                  .text-center{
+                  text-align:center!important;
+                  }
+                  hr {
+                  border-top: 2px solid black;
+                  width :100%;
+                  padding-right : 100%;
+                  }
+                  .titles{
+                  color:black!important;
+                  font-size : 14px;
+                  font-weight : bold;
+                  }
+
+                  table, th, td{
+                  border : 1px solid black;
+                  padding : 5px;
+                  }
+                  td{
+                  padding:11px!important;
+                  }
+                </style>
+                <br/>
+
+            <h2>Etat Détaillé </h2>
+
+
+                <div class="row mt32">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <th class="titles text-center">
+                          Client
+                        </th>
+                        <th class="titles text-center">
+                          Total
+                        </th>
+                        <th class="titles text-center">
+                          Total payer
+                        </th>
+                        <th class="titles text-center">
+                          Reste à payer
+                        </th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <t t-foreach="doc.line_details" t-as="l" style="border:1px solid black;">
+                        <tr>
+                          <td class="titles text-center">
+                              <span style="color:black !important;" t-esc="l.partner_id.name"/>
+
+                          </td>
+                          <td class="titles text-center">
+                              <span style="color:red !important;" t-esc="l.total"/>
+
+                          </td>
+                          <td class="titles text-center">
+                              <span style="color:red !important;" t-esc="l.total_paid"/>
+
+                          </td>
+
+                          <td class="titles text-center">
+                              <span style="color:red !important;" t-esc="l.total_reste"/>
+
+                          </td>
+                        </tr>
+                        </t>
+
+                              </tbody>
+                            </table>
+
+                          </div>
+
+                        </div>
+                      </t>
+                    </t>
+                  </t>
+                </template>
+
+              </data>
+            </odoo>

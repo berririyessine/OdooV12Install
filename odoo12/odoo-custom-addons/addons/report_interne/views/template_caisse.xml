@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+<report
+        id="template_caisse"
+        string="Recu"
+        model="account.bank.statement.line"
+        report_type="qweb-pdf"
+        file="report_interne.recu"
+        name="report_interne.template_recu"
+        attachment_use="False"/>
+<template t-name="template_recu">
+         <t t-call="web.html_container">
+           <t t-call="web.external_layout">
+               <div class="page">
+
+
+        <style>
+            .titre {
+                border : 1px solid black;
+                border-radius : 10px;
+                text-align : center;
+                padding : 10px;
+            }
+            h3 {
+                color : blue;
+                margin : 0px;
+                padding : 0px;
+            }
+            .case {
+                padding: 3px 15px;
+                border : 1px solid black;
+                border-radius : 5px;
+            }
+            .row {
+                margin-top : 10px;
+                margin-bottom : 10px;
+            }
+            span {
+                font-size:12px;
+            }
+        </style>
+        <br/><br/><br/>
+             <div class="row" style="display:block;">
+               <div style="font-size:18px;">
+        <b>  Le  <span style="font-size:18px;" t-esc="docs.date"/> </b><br/>
+
+
+    <center style="font-size:22px;"><u>  Reçu de paiement </u> </center> <br/>
+
+      Reçu de la caisse <b><span style="font-size:18px;" t-esc="docs.company_id.name"/> </b> <br/>
+      A <u><span style="font-size:18px;" t-esc="docs.partner_id.name"/></u> <br/><br/>
+      Je, soussigné(e)
+    <b style="font-size:18px;">  <span style="font-size:18px;" t-esc="docs.partner_id.name"/></b> , reconnais avoir reçu la somme de
+    <t t-if="docs.amount &gt; 0">
+    <b style="font-size:18px;"><span style="font-size:18px;" t-esc="docs.amount"/> </b>           TND. <br/>
+   </t>
+   <t t-if="docs.amount &lt; 0">
+     <b style="font-size:18px;"><span style="font-size:18px;" t-esc="docs.amount * -1"/> </b>           TND. <br/>
+   </t>
+       Cette somme a été reçu pour objet : <br/>
+    <span style="font-size:18px;" t-esc="docs.note"/>
+<br/><br/>
+      Ce reçu confirme que le paiement a bien été fait. <br/>
+    </div>
+  </div>
+</div>
+</t>
+    </t>
+    </template>
+    </data>
+</odoo>

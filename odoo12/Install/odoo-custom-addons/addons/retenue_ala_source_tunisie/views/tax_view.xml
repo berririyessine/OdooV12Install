@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="account_view_tax_form" model="ir.ui.view">
+			<field name="name">account.tax.form.inherit</field>
+			<field name="model">account.tax</field>
+			<field name="inherit_id" ref="account.view_tax_form" />
+			<field name="arch" type="xml">
+				<field name="type_tax_use" position="after">
+					<field name="is_retenue_tva" attrs="{'invisible':[('is_retenue','=',True)]}"/>
+					<field name="is_retenue" attrs="{'invisible':[('is_retenue_tva','=',True)]}"/>
+					<field name="retenue_type" attrs="{'invisible':['|',('is_retenue','=',False),('is_retenue_tva','=',True)]}"/>
+				</field>
+			</field>
+		</record>
+	</data>
+</odoo>

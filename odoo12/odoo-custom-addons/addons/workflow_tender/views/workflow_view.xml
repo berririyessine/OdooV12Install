@@ -1,0 +1,100 @@
+<odoo>
+    <data>
+        <record id="workflow_tree_view" model="ir.ui.view">
+            <field name="name">workflow.main.tree</field>
+            <field name="model">workflow.main</field>
+            <field name="arch" type="xml">
+                <tree string="WorkFlow">
+                    <field name="prospection_id" string="La Tâche"/>
+                    <field name="state" string="État"/>
+                    <field name="prospection" string="Prospection" widget="percentpie"/>
+                    <field name="etude" string="Etude" widget="percentpie"/>
+                    <field name="appel_offre" string="App.Off" widget="percentpie"/>
+                    <field name="questionnaire_techn" string="Q.Tech" widget="percentpie"/>
+                    <field name="prepa_config" string="P.Config" widget="percentpie"/>
+                    <field name="devis" string="Devis" widget="percentpie"/>
+                    <field name="devis_envoye" string="D.Envoye" widget="percentpie"/>
+                    <field name="commande" string="Bn.Commande" widget="percentpie"/>
+                    <field name="facture" string="Facture" widget="percentpie"/>
+                </tree>
+            </field>
+        </record>
+        <record id="workflow_form_view" model="ir.ui.view">
+        <field name="name">workflow.main.form</field>
+        <field name="model">workflow.main</field>
+        <field name="arch" type="xml">
+            <form string="WorkFLow Form">
+               <header>
+                   <field name="state" widget="statusbar"/>
+               </header>
+                <sheet>
+                    <div class="oe_button_box btn_div">
+                        <button name="prosp_show"  type="object" class="oe_stat_button btn_perso">
+                            <field name="prospection" string="Prospection" widget="percentpie"/>
+                        </button>
+                        <button name="prosp_show" type="object" class="oe_stat_button btn_perso" >
+                            <field name="etude" string="Etude" widget="percentpie"/>
+                        </button>
+                        <button name="prosp_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="appel_offre" string="App.Off" widget="percentpie"/>
+                        </button>
+                        <button name="prosp_show" type="object"  class="oe_stat_button btn_perso">
+                            <field name="questionnaire_techn" string="Q.Tech" widget="percentpie"/>
+                        </button>
+                        <button name="prosp_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="prepa_config" string="P.Config" widget="percentpie"/>
+                        </button>
+                        <button name="devis_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="devis" string="Devis" widget="percentpie"/>
+                        </button>
+                        <button name="devis_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="devis_envoye" string="D.Envoye" widget="percentpie"/>
+                        </button>
+                        <button name="devis_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="commande" string="Bn.Commande" widget="percentpie"/>
+                        </button>
+                        <button name="invoice_show" type="object" class="oe_stat_button btn_perso">
+                            <field name="facture" string="Facture" widget="percentpie"/>
+                        </button>
+                        </div>
+                    <div class="oe_title">
+                        <label for="name"  string="Prospection"/>
+                        <h1><field name="name" /></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="prospection_id" string="Prospection"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Suivie">
+                            <field name="log_user">
+                                <tree>
+
+                                    <field name="user_id"/>
+                                     <field name="name"/>
+                                     <field name="pourcentage"  widget="percentpie"/>
+                                     <field name="comment"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+<!--                <div class="oe_chatter">-->
+<!--                    <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>-->
+<!--                    <field name="message_ids" widget="mail_thread"/>-->
+<!--                </div>-->
+            </form>
+        </field>
+        </record>
+        <record model="ir.actions.act_window" id="WorkFlowAction">
+            <field name="name">WorkFlow</field>
+            <field name="res_model">workflow.main</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+        </record>
+    </data>
+</odoo>

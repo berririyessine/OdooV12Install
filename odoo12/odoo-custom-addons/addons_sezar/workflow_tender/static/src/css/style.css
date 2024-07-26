@@ -1,0 +1,14 @@
+.btn_div{
+    float: center;
+    margin-left: 52%;
+    margin-top: 2%;
+
+}
+.btn_perso{
+border: 1px solid #eeeeee;
+background-color: white;
+}
+
+.titre_perso{
+    margin-top: -10%;
+    }

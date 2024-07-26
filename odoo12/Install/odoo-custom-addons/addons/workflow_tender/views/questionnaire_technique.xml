@@ -1,0 +1,43 @@
+<odoo>
+    <data>
+        <!--      Questionnaire Technique-->
+        <record id="questionnaire_technique_form_view" model="ir.ui.view">
+        <field name="name">qcm.technique.form</field>
+        <field name="model">qcm.technique</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="q1" string="Question 1 ..."/>
+                            <field name="q3" string="Question 2 ...."/>
+                        </group>
+                        <group>
+                            <field name="q2" string="Question 3 ..."/>
+                            <field name="q4" string="Question 4 ..." widget="radio"/>
+                        </group>
+                        <group>
+                            <field name="q5" string="Question 5 ..."/>
+                            <field name="q6" string="Question 6 ... " widget="radio"/>
+                        </group>
+
+                    </group>
+                    <notebook>
+                        <page string="Notes interne">
+                            <field name="notes_qcm"/>
+                        </page>
+                    </notebook>
+
+                    <footer>
+                        <button string="Valider" name="validate" type="object" class="btn-primary"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+
+                </sheet>
+
+            </form>
+        </field>
+        </record>
+    </data>
+</odoo>

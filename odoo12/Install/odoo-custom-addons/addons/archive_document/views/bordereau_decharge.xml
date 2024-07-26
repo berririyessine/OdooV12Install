@@ -1,0 +1,79 @@
+<odoo>
+    <data>
+<report
+        id="bordereau_decharge"
+        string="Bordereau de décharge"
+        model="muk_dms.file"
+        report_type="qweb-pdf"
+        file="archive_document.bordereau_decharge"
+        name="archive_document.template_bordereau_decharge"
+        attachment_use="False"/>
+<template t-name="template_bordereau_decharge">
+  <t t-call="web.html_container">
+    <t t-call="web.external_layout">
+      <div class="page">
+
+
+        <style>
+            .titre {
+                border : 1px solid black;
+                border-radius : 10px;
+                text-align : center;
+                padding : 10px;
+            }
+            h3 {
+                color : blue;
+                margin : 0px;
+                padding : 0px;
+            }
+            .case {
+                padding: 3px 15px;
+                border : 1px solid black;
+                border-radius : 5px;
+            }
+            .row {
+                margin-top : 10px;
+                margin-bottom : 10px;
+            }
+            span {
+                font-size:12px;
+            }
+        </style>
+             <div class="row" style="display:block;">
+               <div style="font-size:20px;">
+                 <t t-if="docs.decharge">
+                        <br/><br/><br/>
+                       <center ><H1>  <b>Bordereau de décharge</b> </H1> </center> <br/>
+                        <br/><br/><br/>
+
+                          Je soussigné <b><span style="font-size:20px;" t-esc="docs.employee.name"/></b> Certifie avoir reçu le document suivant :
+                            <br/><br/>
+                            &amp;nbsp;&amp;nbsp;&amp;nbsp; <b>""<span style="font-size:20px;" t-esc="docs.name"/>""</b>
+                            <br/><br/>
+                          De la part de .....................................  en qualité gérant de la société PALMAWOOD titulaire de
+                          matricule fiscale "1495406ZAM000".
+                            <br/><br/><br/>
+                          Fait à Tunis le <span style="font-size:20px;" t-esc="docs.date_decharge"/>
+                         <div class="row">
+                            <div class="col-xs-7"  style="width:57%;">
+                           </div>
+                           <div class="col-xs-5"  style="width:43%;">
+                             <br/><br/><br/>
+                             <strong><center><u>Signature</u></center></strong>
+                           </div>
+                           </div>
+                  </t>
+                  <t t-else=""><br/><br/><br/><br/><br/><br/>
+                    <h1><center>  Pas de décharge</center></h1>
+                  </t>
+
+                  <div class="footer">
+                  </div>
+            </div>
+          </div>
+      </div>
+    </t>
+  </t>
+</template>
+</data>
+</odoo>

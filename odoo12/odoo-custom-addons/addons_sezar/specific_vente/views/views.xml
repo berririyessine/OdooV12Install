@@ -1,0 +1,100 @@
+<odoo>
+  <data>
+   <!-- <record id="view_product_form" model="ir.ui.view">
+      <field name="name">product.template.common.form</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='list_price']" position="replace">
+            <field name="list_price" on_change="onchange_calculer(standard_price, marge)" />
+        </xpath>
+        <xpath expr="//field[@name='list_price']" position="after">
+        <div name="marge">
+           <label for="marge" class="o_form_label o_form_label_empty"/>
+           <field name="marge" class="oe_inline" /><span>(%%)</span>
+        </div>
+
+        </xpath>
+
+        <xpath expr="//field[@name='type']" position="after">
+            <field name="rangement" string="Rangement"/>
+        </xpath>
+
+
+      </field>
+
+      </record> -->
+
+<!--
+      <record id="view_product_form_inherit" model="ir.ui.view">
+         <field name="name">product.template.inherit.form</field>
+         <field name="model">product.template</field>
+         <field name="inherit_id" ref="product.product_template_only_form_view"/>
+         <field name="arch" type="xml">
+
+           <xpath expr="//field[@name='default_code']" position="attributes">
+               <attribute name="string">Référence</attribute>
+           </xpath>
+
+           <xpath expr="//field[@name='default_code']" position="after">
+               <field name="rangement" string="Rangement"/>
+           </xpath>
+
+
+         </field>
+
+     </record> -->
+
+
+<!--
+     <record id="product_normal_form_view_inherit" model="ir.ui.view">
+             <field name="name">product.product.inherit.form</field>
+             <field name="model">product.product</field>
+             <field name="mode">primary</field>
+             <field eval="7" name="priority"/>
+             <field name="inherit_id" ref="product.product_normal_form_view"/>
+             <field name="arch" type="xml">
+               <xpath expr="//field[@name='type']" position="after">
+                   <field name="rangement" string="Rangement"/>
+               </xpath>
+</field>
+</record> -->
+
+<!-- <record id="payment_inherit" model="ir.ui.view">
+     <field name="name">account.payment.form</field>
+     <field name="model">account.payment</field>
+     <field name="inherit_id" ref="account.view_account_payment_form"/>
+     <field name="arch" type="xml">
+         <xpath expr="//field[@name='banq']" position="after">
+                  <field name="banque_list" string="Banque"/>
+         </xpath>
+
+
+     </field>
+ </record> -->
+
+
+
+
+
+      <!-- <record id="categorie_inherit" model="ir.ui.view">
+           <field name="name">product.category.inherit.form</field>
+           <field name="model">product.category</field>
+           <field name="inherit_id" ref="product.product_category_form_view"/>
+           <field name="arch" type="xml">
+
+               <xpath expr="//field[@name='parent_id']" position="before">
+
+
+                       <field name="code" string="Code"/>
+                        <field name="next_number" string="Nombre Suivant"/>
+
+               </xpath>
+
+
+           </field>
+       </record> -->
+
+       
+  </data>
+</odoo>

@@ -1,0 +1,9 @@
+<odoo>
+  <data  >
+  
+ <function 
+   
+    model="test"
+    name="modif_journal"/>
+    </data>
+</odoo>

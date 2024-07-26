@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+            id="certificat_retenue"
+            string="Certificat de Retenue à la source"
+            model="account.invoice"
+            report_type="qweb-pdf"
+            file="retenue_ala_source_tunisie.certificat_retenue"
+            name="retenue_ala_source_tunisie.retenue_a_la_source"
+            attachment_use = "False" />
+
+        <template id="retenue_a_la_source">
+             <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <!--<style>-->
+                    <!--    html,body{-->
+                    <!--    margin : 0px 0px 0px 0px !important;-->
+                    <!--    padding : 0px-->
+                    <!--    0px 0px 0px !important;-->
+                    <!--    }-->
+                    <!--    td,th,tr{-->
+                    <!--    border-style:solid !important;-->
+                    <!--    border-width:2px !important;-->
+                    <!--    border-color:black !important;-->
+                    <!--    border-left: 2px solid #000 !important;-->
+                    <!--    border-right: 2px solid #000-->
+                    <!--    !important;-->
+                    <!--    }-->
+                    <!--    table td{ padding:20px; border:1px solid #F00 ; }-->
+                    <!--</style>-->
+                    <div class="header o_background_header">
+                        <div style="float:right;margin-left:50px ! important ;">
+                            <span>
+                                <b>
+                                    CERTIFICAT DE RETENUE D'IMPOT SUR LE REVENU
+                                    <br/>
+                                    <center>OU D'IMPOT SUR LES SOCIETES</center>
+                                </b>
+                            </span>
+                        </div>
+                        <div style="float:left;margin-left:30px ! important ;">
+                            <b>
+                                <span>
+                                    <b>
+                                        REPUBLIQUE TUNISIENNE
+                                        <br/>
+                                        MINISTERE DES FINANCES
+                                        <br/>
+                                        DIRECTION GENERALE DU CONTROLE FISCAL
+                                        <br/>
+                                    </b>
+                                </span>
+                            </b>
+                            <br/>
+                            <div>
+                                <center>
+                                    <span>
+                                        Retenue effectuée le:
+                                        <span t-field="doc.date_invoice" t-field-options="{&quot;format&quot;: &quot;MM/dd/yyyy&quot;}"/>
+                                        <br/>
+                                        ou pendant :
+                                    </span>
+                                    <br/>
+                                    <span>
+                                        Sur la Facture N°:
+                                        <span t-esc="doc.number"/>
+                                    </span>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                      <br/>
+                      <br/>
+                      <br/>
+                    
+                    <div class="page">
+                      
+                            <div style="border: 1px solid black">
+                                <div class="row">
+                                    <div class="col-xs-6">A- PERSONNE OU ORGANISME PAYEUR :
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <center>IDENTIFIANT</center>
+                                        <br/>
+                                        <table class="table table-condensed">
+                                            <tr style="border: 1px solid black">
+                                                <td style="border: 1px solid black">
+                                                    <span>Matricule Fiscal</span>
+
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Code T.V.A.</span>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Code Catégorie</span>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Ets Secondaire</span>
+                                                </td>
+                                            </tr>
+                                            <tr style="border: 1px solid black">
+                                                <td style="border: 1px solid black">
+                                                    <center>
+                                                           <span t-esc="doc.validateMF(doc.company_id.vat)"/>
+                                                    </center>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <center>
+                                                         <span t-esc="doc.company_id.vat.split('/')[1]"/>
+                                                    </center>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <center>
+                                                      <span t-esc="doc.company_id.vat.split('/')[2]"/>
+                                                    </center>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <center>
+                                                        <span t-esc="doc.company_id.vat.split('/')[3]"/>
+                                                    </center>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <br/>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        Dénomination de la personne ou de l'organisme pay:
+                                        <strong>
+                                            <span t-esc="doc.company_id.name"/>
+                                        </strong>
+                                        <br/>
+                                        Adresse :
+                                        <strong>
+                                             <span t-esc="doc.company_id.street"/>  <span t-esc="doc.company_id.street2"/>  <span t-esc="doc.company_id.city"/>
+                                              <span t-esc="doc.company_id.country_id.name"/>  <span t-esc="doc.company_id.zip"/>                                       
+                                        </strong>
+                                    </div>
+                                </div>
+
+                                <style>
+                                    table{
+                                    border:1px black solid;width:100%;
+
+                                    }
+
+                                    thead th{
+                                    border:1px black solid; padding:4px
+                                    }
+                                    td{
+                                    border:1px black solid; padding:4px
+                                    }
+                                    .abc {border:1px black solid;}
+                                </style>
+
+                                <div>
+
+                                    <table>
+                                        <thead>
+                                            <th>
+                                                B: RETENUES EFFECTUEES SUR
+                                            </th>
+                                            <th>
+                                                Montant brut
+                                            </th>
+                                            <th>
+                                                Retenue
+                                                <span t-esc="doc.retenue_ala_source.name"/>
+                                            </th>
+                                            <th>
+                                                Montant Net
+                                            </th>
+                                        </thead>
+                                        <tbody>
+
+                                            <t t-foreach="doc.retenue_type.search([])" t-as="type">
+                                                <tr>
+                                                    <td t-esc="type.name"/>
+                                                    <td>
+                                                        <t t-if="type.name == doc.retenue_type.name">
+                                                            <span t-esc="'%.3f'%doc.amount_total"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-if="type.name == doc.retenue_type.name">
+                                                            <span t-esc="'%.3f'%doc.total_retenue"/>
+                                                        </t>
+                                                    </td>
+                                                    <td>
+                                                        <t t-if="type.name == doc.retenue_type.name">
+                                                            <span t-esc="'%.3f'%(doc.amount_total-doc.total_retenue)"/>
+                                                        </t>
+                                                    </td>
+
+                                                </tr>
+                                            </t>
+
+                                        </tbody>
+
+
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        C- BENEFICAIRE
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        N° de la carte D'identité Nationale:
+                                        <br/>
+
+                                        <br/>
+                                        Nom et Prénom ou Raison Sociale :
+                                        <center>
+                                            <b>
+                                                <span t-esc="doc.partner_id.name"/>
+                                            </b>
+                                        </center>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        Adresse professionnelle :
+                                        <center>
+                                            <span t-esc="doc.partner_id.street"/>
+                                        </center>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        Adresse de résidence :
+                                        <center>
+                                        </center>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <center>IDENTIFIANT</center>
+                                        <br/>
+
+                                        <table class="table table-condensed" style="border: 1px solid black !important">
+                                            <tr style="border: 1px solid black">
+                                                <td style="border: 1px solid black">
+                                                    <span>Matricule Fiscal</span>
+
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Code T.V.A.</span>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Code Catégorie</span>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <span>Ets Secondaire</span>
+                                                </td>
+                                            </tr>
+                                            <tr style="border: 1px solid black">
+
+                                                <td style="border: 1px solid black">
+                                                    <t t-if="doc.partner_id.vat">
+                                                        <center>
+                                                            <span t-esc="doc.validateMF(doc.partner_id.vat)"/>
+                                                        </center>
+                                                    </t>
+                                                    <t t-else="">
+
+                                                    </t>
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <t t-if="doc.partner_id.vat">
+                                                        <center>
+                                                            <span t-esc="doc.partner_id.vat.split('/')[1]"/>
+                                                        </center>
+                                                    </t>
+                                                    
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <t t-if="doc.partner_id.vat">
+                                                        <center>
+                                                            <span t-esc="doc.partner_id.vat.split('/')[2]"/>
+                                                        </center>
+                                                    </t>
+                                                   
+                                                </td>
+                                                <td style="border: 1px solid black">
+                                                    <t t-if="doc.partner_id.vat">
+                                                        <center>
+                                                            <span t-esc="doc.partner_id.vat.split('/')[3]"/>
+                                                        </center>
+                                                    </t>
+                                                   
+                                                </td>
+                                            </tr>
+                                        </table>
+                                       
+                                    </div>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <span>
+                                            <center>
+                                                A Sousse ,le
+                                                <br/>
+                                                Cachet et Signature du payeur
+
+                                            </center>
+                                        </span>
+                                        <div style="padding:2%"/>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+    </data>
+</odoo>

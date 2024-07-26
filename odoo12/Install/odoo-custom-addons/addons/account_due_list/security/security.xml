@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+    <record id="model_autre_access_group" model="res.groups">
+      <field name="name">Autres Droit</field>
+
+    </record>
+    <record id="partner_invoice_details" model="ir.model.access">
+      <field name="name">Client.Detaille</field>
+      <field name="group_id" ref="account_due_list.model_autre_access_group"/>
+      <field name="model_id" ref="account_due_list.model_partner_invoice_details"/>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_unlink" eval="True"/>
+      <field name="perm_create" eval="True"/>
+    </record>
+
+    <record id="partner_invoice_details_line" model="ir.model.access">
+      <field name="name">Client.Detaille.Line</field>
+      <field name="group_id" ref="account_due_list.model_autre_access_group"/>
+      <field name="model_id" ref="account_due_list.model_partner_invoice_line"/>
+      <field name="perm_read" eval="True"/>
+      <field name="perm_write" eval="True"/>
+      <field name="perm_unlink" eval="True"/>
+      <field name="perm_create" eval="True"/>
+    </record>
+
+
+  </data>
+</odoo>

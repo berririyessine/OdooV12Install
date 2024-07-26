@@ -1,0 +1,215 @@
+<odoo>
+    <data>
+<!--    GROUPE-->
+        <record id="work_tender_group" model="res.groups">
+            <field name="name">WorkFlowTender</field>
+        </record>
+        <record id="work_tender_menu_filtre_group" model="res.groups">
+            <field name="name">WorkFlowTender Filtre</field>
+        </record>
+        <record id="work_tender_menu_all_group" model="res.groups">
+            <field name="name">WorkFlowTender All</field>
+        </record>
+<!--        MODELES-->
+        <record id="prospection" model="ir.model.access">
+            <field name="name">Prospection</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_prospection"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prospection_appel_offre" model="ir.model.access">
+            <field name="name">Prospection Appel Offre</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_prospection_appel_offre"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="etude_specifique" model="ir.model.access">
+            <field name="name">Etude Specifique</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_etude_specifique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="qcm_technique" model="ir.model.access">
+            <field name="name">Qcm Technique</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_technique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="qcm_technique" model="ir.model.access">
+            <field name="name">Qcm Technique</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_technique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="qcm_technique" model="ir.model.access">
+            <field name="name">Qcm Technique</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_technique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="preparation_config" model="ir.model.access">
+            <field name="name">Configuration</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_preparation_config"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prospection_type" model="ir.model.access">
+            <field name="name">Configuration Type</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_prospection_type"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prospection_stage" model="ir.model.access">
+            <field name="name">Configuration Type</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_prospection_stage"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="offre_physique" model="ir.model.access">
+            <field name="name">Configuration Type</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_offre_physique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="qcm_offre_physique" model="ir.model.access">
+            <field name="name">Configuration Type</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_offre_physique"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="qcm_offre_tuneps" model="ir.model.access">
+            <field name="name">QCM Offre Tuneps</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_offre_tuneps"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="offre_tuneps" model="ir.model.access">
+            <field name="name">Offre Tuneps</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_offre_tuneps"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="workflow_main" model="ir.model.access">
+            <field name="name">WorkFLow Main</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_workflow_main"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="workflow_line_main" model="ir.model.access">
+            <field name="name">WorkFLow Line Main</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_workflow_main_line"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prospection_qcm" model="ir.model.access">
+            <field name="name">QCM Prospection</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_prospection"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prospection_etude_qcm" model="ir.model.access">
+            <field name="name">QCM Etude</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_prospection_etude"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="prepa_config_qcm" model="ir.model.access">
+            <field name="name">QCM Prepa</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_qcm_prepa_config"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+<!--        Devis-->
+        <record id="SaleOrderQCMDevis_qcm" model="ir.model.access">
+            <field name="name">SaleOrderQCMDevis_qcm</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_sale_order_draft_qcm"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="SaleOrderQCMDevisSent_qcm" model="ir.model.access">
+            <field name="name">SaleOrderQCMDevisSent_qcm</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_sale_order_send_qcm"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <record id="SaleOrderQCMBnCommande_qcm" model="ir.model.access">
+            <field name="name">SaleOrderQCMBnCommande_qcm</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_sale_order_bn_cm_qcm"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+        <!--        Facture-->
+        <record id="AccountInvoiceQCM_qcm" model="ir.model.access">
+            <field name="name">AccountInvoiceQCM_qcm</field>
+            <field name="group_id" ref="workflow_tender.work_tender_group"/>
+            <field name="model_id" ref="workflow_tender.model_account_invoice_draft_qcm"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_create" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="repair_category_view_tree" model="ir.ui.view">
+        <field name="name">repair.category.tree</field>
+        <field name="model">repair.category</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="repair_category_view_form" model="ir.ui.view">
+        <field name="name">repair.category.form</field>
+        <field name="model">repair.category</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group name="main">
+                        <group name="left">
+                            <field name="name"/>
+                        </group>
+                        <group name="right">
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- <record id="repair_category_action" model="ir.actions.act_window">
+        <field name="name">Categories</field>
+        <field name="res_model">repair.category</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="repair_category_menu"
+        parent="menu_repair_config"
+        action="repair_category_action"
+        sequence="15"
+    /> -->
+
+----------------------------------------------
+<record id="repair_marque_view_tree" model="ir.ui.view">
+    <field name="name">repair.marque.tree</field>
+    <field name="model">repair.marque</field>
+    <field name="arch" type="xml">
+        <tree>
+            <field name="name"/>
+        </tree>
+    </field>
+</record>
+
+<record id="repair_marque_view_form" model="ir.ui.view">
+    <field name="name">repair.marque.form</field>
+    <field name="model">repair.marque</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group name="main">
+                    <group name="left">
+                        <field name="name"/>
+                    </group>
+                    <group name="right">
+                        <field
+                            name="company_id"
+                            groups="base.group_multi_company"
+                        />
+                    </group>
+                </group>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+<record id="repair_marque_action" model="ir.actions.act_window">
+    <field name="name">Marques</field>
+    <field name="res_model">repair.marque</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem
+    id="repair_marque_menu"
+    parent="menu_repair_config"
+    action="repair_marque_action"
+    sequence="40"
+/>
+
+<menuitem id="menu_repair_config"
+          name="Configuration"
+          parent="repair.menu_repair_order"
+          sequence="50"
+          groups="stock.group_stock_user"/>
+
+
+<menuitem
+    id="repair_order_menu"
+    name="Ordres de réparation"
+    parent="repair.menu_repair_order"
+    action="repair.action_repair_order_tree"
+    sequence="2"
+/>
+
+</odoo>

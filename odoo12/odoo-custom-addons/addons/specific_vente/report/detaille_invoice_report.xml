@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <report
+      id="rapport_facture_client"
+      string="Factures Client"
+      model="partner.invoice.line"
+      report_type="qweb-pdf"
+      file="account_due_list.rapport_facture_client"
+      name="account_due_list.template_facture_client"
+      attachment_use="False"/>
+
+
+      <template id="account_due_list.template_facture_client">
+        <t t-call="web.html_container">
+          <t t-call="web.external_layout">
+
+            <t t-foreach="docs" t-as="doc">
+              <div class="page">
+                <style>
+                  .text-center{
+                  text-align:center!important;
+                  }
+                  hr {
+                  border-top: 2px solid black;
+                  width :100%;
+                  padding-right : 100%;
+                  }
+                  .titles{
+                  color:black!important;
+                  font-size : 14px;
+                  font-weight : bold;
+                  }
+
+                  table, th, td{
+                  border : 1px solid black;
+                  padding : 5px;
+                  }
+                  td{
+                  padding:11px!important;
+                  }
+                </style>
+                <br/>
+                <div class="row">
+                  <div class="col-xs-5 col-xs-offset-1">
+                      <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                      <p t-if="doc.partner_id.vat"><t t-esc="doc.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="doc.partner_id.vat"/></p>
+                      <t  t-if="doc.partner_id.phone">Tél : <t t-esc="doc.partner_id.phone"/></t>
+                      <t  t-if="doc.partner_id.mobile">Mobile : <t t-esc="doc.partner_id.mobile"/></t>
+                      <t  t-if="doc.partner_id.email">Email : <t t-esc="doc.partner_id.email"/></t>
+                      <t  t-if="doc.partner_id.website">Site Web : <t t-esc="doc.partner_id.website"/></t>
+                  </div>
+                <div class="col-xs-6">
+                </div>
+
+            </div>
+
+
+                <div class="row mt32">
+                  <table width="100%">
+                    <thead>
+                      <tr>
+                        <th class="titles text-center">
+                          Numéro Facture
+                        </th>
+                        <th class="titles text-center">
+                          Date de facture
+                        </th>
+                        <th class="titles text-center">
+                          Document d'origine
+                        </th>
+                        <th class="titles text-center">
+                          Libellé
+                        </th>
+                        <th class="titles text-center">
+                          Client
+                        </th>
+                        <th class="titles text-center">
+                          Réf.Partner
+                        </th>
+                        <th class="titles text-center">
+                          Payment Terms
+                        </th>
+                        <th class="titles text-center">
+                          Débit
+                        </th>
+                        <th class="titles text-center">
+                          Crédit
+                        </th>
+                        <th class="titles text-center">
+                          Montant résiduel
+                        </th>
+                        <th class="titles text-center">
+                          Date d'échéance
+                        </th>
+                        <th class="titles text-center">
+                          État Facture
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <t t-set="total_debit" t-value="0.0"/>
+                      <t t-set="total_credit" t-value="0.0"/>
+                      <t t-set="total_due" t-value="0.0"/>
+
+                      <t t-foreach="doc.invoice_ids" t-as="l" style="border:1px solid black;">
+                        <tr>
+                          <td class="titles text-center"> <t t-if="l.stored_invoice_id.number">
+                            <t t-if="l.echeance_boolean == True">
+                              <span style="color:red !important;" t-esc="l.stored_invoice_id.number"/>
+                            </t>
+                            <t t-else="">
+                              <span style="color:black !important;"  t-esc="l.stored_invoice_id.number"/>
+                            </t></t>
+
+                            <t t-else="">Règlement</t>
+
+                          </td>
+                          <td class="titles text-center"><t t-if="l.invoice_date">
+                            <t t-if="l.echeance_boolean == True">
+                              <span style="color:red !important;" t-esc="l.invoice_date"/>
+                            </t>
+                            <t t-else="">
+                              <span style="color:black !important;"  t-esc="l.invoice_date"/>
+                            </t></t>
+                            <t t-else="">-</t> </td>
+                            <td class="titles text-center">   <t t-if="l.invoice_origin">
+                              <t t-if="l.echeance_boolean == True">
+                                <span style="color:red !important;" t-esc="l.invoice_origin"/>
+                              </t>
+                              <t t-else="">
+                                <span style="color:black !important;"  t-esc="l.invoice_origin"/>
+                              </t></t>
+                              <t t-else="">-</t> </td>
+                              <td class="titles text-center">   <t t-if="l.name">
+                                <t t-if="l.echeance_boolean == True">
+                                  <span style="color:red !important;" t-esc="l.name"/>
+                                </t>
+                                <t t-else="">
+                                  <span style="color:black !important;"   t-esc="l.name"/>
+                                </t></t>
+                                <t t-else="">-</t> </td>
+                                <td class="titles text-center">   <t t-if="l.partner_id">
+                                  <t t-if="l.echeance_boolean == True">
+                                    <span style="color:red !important;" t-esc="l.partner_id.name"/>
+                                  </t>
+                                  <t t-else="">
+                                    <span style="color:black !important;"  t-esc="l.partner_id.name"/>
+                                  </t></t>
+                                  <t t-else="">-</t> </td>
+                                  <td class="titles text-center">   <t t-if="l.partner_ref">
+                                    <t t-if="l.echeance_boolean == True">
+                                      <span style="color:red !important;" t-esc="l.partner_ref"/>
+                                    </t>
+                                    <t t-else="">
+                                      <span style="color:black !important;" t-esc="l.partner_ref"/>
+                                    </t></t>
+                                    <t t-else="">-</t> </td>
+                                    <td class="titles text-center">   <t t-if="l.stored_invoice_id.payment_term_id">
+                                      <t t-if="l.echeance_boolean == True">
+                                        <span style="color:red !important;" t-esc="l.stored_invoice_id.payment_term_id.name"/>
+                                      </t>
+                                      <t t-else="">
+                                        <span style="color:black !important;"  t-esc="l.stored_invoice_id.payment_term_id.name"/>
+                                      </t></t>
+                                      <t t-else="">-</t> </td>
+                                      <td class="titles text-center">
+                                        <t t-if="l.echeance_boolean == True">
+                                          <span style="color:red !important;" t-esc="'%.3f'%(l.debit)"/> <t t-set="total_debit" t-value="total_debit + l.debit"/>
+                                        </t>
+                                        <t t-else="">
+                                          <span style="color:black !important;"  t-esc="'%.3f'%(l.debit)"/><t t-set="total_debit" t-value="total_debit + l.debit"/>
+                                        </t>
+                                      </td>
+                                      <td class="titles text-center">
+                                        <t t-if="l.echeance_boolean == True">
+                                          <span style="color:red !important;" t-esc="'%.3f'%(l.credit)"/> <t t-set="total_credit" t-value="total_credit + l.credit"/>
+                                        </t>
+                                        <t t-else="">
+                                          <span style="color:black !important;"  t-esc="'%.3f'%(l.credit)"/><t t-set="total_credit" t-value="total_credit + l.credit"/>
+                                        </t>
+                                      </td>
+                                      <td class="titles text-center">
+                                        <t t-if="l.echeance_boolean == True">
+                                          <span style="color:red !important;" t-esc="'%.3f'%(l.amount_residual)"/> <t t-set="total_due" t-value="total_due + l.amount_residual"/>
+                                        </t>
+                                        <t t-else="">
+                                          <span style="color:black !important;" t-esc="'%.3f'%(l.amount_residual)"/><t t-set="total_due" t-value="total_due + l.amount_residual"/>
+                                        </t>
+                                      </td>
+                                      <td class="titles text-center">
+                                        <t t-if="l.date_maturity">
+                                          <t t-if="l.echeance_boolean == True">
+                                            <span style="color:red !important;"  t-esc="l.date_maturity"/>
+                                          </t>
+                                          <t t-else="">
+                                            <span style="color:black !important;"  t-esc="l.date_maturity"/>
+                                          </t>
+                                        </t>
+                                        <t t-else="">
+                                          -
+                                        </t>
+                                      </td>
+                                      <td class="titles text-center"> <t t-if="l.echeance_boolean == True">
+                                        <span style="color:red !important;" t-field="l.invoice_id.state"/>
+                                      </t>
+                                      <t t-else="">
+                                        <span style="color:black !important;"  t-field="l.invoice_id.state"/>
+                                      </t>
+                                    </td>
+                                  </tr>
+                                </t>
+                                <tr class="total">
+
+
+                                  <td class="text-right" colspan="8">Total Débit: <span t-esc="'%.3f'%(total_debit)"/></td>
+                                  <td class="text-right" >Total Crédit: <span t-esc="'%.3f'%(total_credit)"/></td>
+                                  <td class="text-left" colspan="3">Total Dûe: <span t-esc="'%.3f'%(total_due)"/> </td>
+
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </div>
+
+                        </div>
+                      </t>
+                    </t>
+                  </t>
+                </template>
+
+              </data>
+            </odoo>

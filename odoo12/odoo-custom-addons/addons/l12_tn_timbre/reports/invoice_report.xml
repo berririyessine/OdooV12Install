@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="report_invoice_add_timbre" inherit_id="account.report_invoice_document">
+			<xpath expr="//tr[@class='border-black o_total']" position="before">
+				<t t-if="o.timbre">
+					<tr>
+						<td>Droit de timbre</td>
+						<td class="text-right">
+							<span t-field="o.timbre"
+								t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}' />
+						</td>
+					</tr>
+				</t>
+			</xpath>
+		</template>
+
+	
+	</data>
+</odoo>
