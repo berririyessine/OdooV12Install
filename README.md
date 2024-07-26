@@ -1,0 +1,1 @@
+# OdooV12Install
